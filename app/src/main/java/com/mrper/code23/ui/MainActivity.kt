@@ -18,32 +18,41 @@ import java.util.regex.Pattern
 @ContentView(R.layout.activity_main)
 class MainActivity : BaseActivity() {
 
+    private var demolist: MutableList<DemoInfoEntry> = mutableListOf()
+    private var demoAdapter: DemoAdapter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //设置标题部分
         toolbar.title = "23Code"
         toolbar.setTitleTextColor(Color.WHITE)
         setToolbar(toolbar)
-        slideMenu.setBackgroundResource(R.mipmap.ic_main_bg)
+        //设置基本控件
+        demoAdapter = DemoAdapter(this@MainActivity,demolist)
+        lvDemo.setAdapter(demoAdapter)
+        //获取页面数据
         HttpManager.httpClient.get(this,HttpManager.BaseURL,object: AsyncHttpResponseHandler(){
             override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?) {
-                //解析类型列表
-                parseDemoTypes(responseBody)
-                //解析案例列表数据
-                parseDemoList(responseBody)
+                var responseResult = String(responseBody!!,charset("utf-8"))
+                parseDemoTypes(responseResult)//解析类型列表
+                parseDemoList(responseResult)//解析案例列表数据
             }
 
             override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?, error: Throwable?) {
 
             }
         })
-
     }
 
-
+    /**
+     * 获取案例列表数据
+     * @param typeName 类型名称
+     * @param pagesize 页码
+     */
     private fun getDemoList(typeName: String,pagesize: Int) {
         HttpManager.httpClient.get(this,HttpManager.getAbsoluteURL(typeName + "/page/$pagesize"),object: AsyncHttpResponseHandler(){
             override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?) {
-                parseDemoList(responseBody)
+                parseDemoList(String(responseBody!!,charset("utf-8")))
             }
 
             override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?, error: Throwable?) {
@@ -52,17 +61,26 @@ class MainActivity : BaseActivity() {
         })
     }
 
-    private fun parseDemoTypes(responseBody: ByteArray?){
+    /**
+     * 解析案例类型
+     * @param responseBody 结果数据
+     */
+    private fun parseDemoTypes(responseBody: String?){
         val htmlMatch = Pattern.compile("<li class=\"cat-item cat-item-\\d+\"><a href=\"http://www.23code.com/(.+?)/\"[^>]*>(.+?)</a>")
-        val matcher = htmlMatch.matcher(String(responseBody!!,charset("utf-8")))
+        val matcher = htmlMatch.matcher(responseBody)
         var typelist: MutableList<TypeInfoEntry> = mutableListOf()
         while(matcher.find()) typelist.add(TypeInfoEntry(matcher.group(2),matcher.group(1)))
         lvType.adapter = ArrayAdapter(this@MainActivity,android.R.layout.simple_list_item_1,typelist)
     }
 
-    private fun parseDemoList(responseBody: ByteArray?){
+    /**
+     * 解析案例列表数据
+     * @param responseBody 数据题
+     * @param isClearData 是否情况数据
+     */
+    private fun parseDemoList(responseBody: String?,isClearData: Boolean = false){
         val htmlPattern = Pattern.compile("<article\\s+id=\"entry[-]\\d+\"[^>]+>([\\s\\S]*?)</article>")
-        var matcher = htmlPattern.matcher(String(responseBody!!,charset("utf-8")))
+        var matcher = htmlPattern.matcher(responseBody)
         var demolist: MutableList<DemoInfoEntry> = mutableListOf()
         while(matcher.find()){
             val demoItem = DemoInfoEntry()
@@ -84,6 +102,7 @@ class MainActivity : BaseActivity() {
             var timeMatcher = timePattern.matcher(itemContent)
             if(timeMatcher.find())
                 demoItem.pubTime = timeMatcher.group(1).replace("on","")
+                        .replace("年",".").replace("月",".").replace("日","")
             //匹配说明
             var desPattern = Pattern.compile("<div class=\"text\">[^<]+<p>([^<]+)</p>[^<]+</div>")
             var desMatcher = desPattern.matcher(itemContent)
@@ -96,7 +115,9 @@ class MainActivity : BaseActivity() {
                 demoItem.typeName = typeMatcher.group(1)
             demolist.add(demoItem)
         }
-        lvDemo.setAdapter(DemoAdapter(this@MainActivity,demolist))
+        if(isClearData) this@MainActivity.demolist.clear()
+        this@MainActivity.demolist.addAll(demolist)
+        demoAdapter?.notifyDataSetChanged()
     }
 
     //<article\s+id="entry-\d+"[^>]+>([\s\S]*?)</article>  匹配某一列

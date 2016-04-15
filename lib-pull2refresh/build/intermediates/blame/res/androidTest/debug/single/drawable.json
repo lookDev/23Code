@@ -1,5 +1,9 @@
 [
     {
+        "merged": "G:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_top.xml",
+        "source": "G:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_top.xml"
+    },
+    {
         "merged": "F:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\vpi__tab_indicator.xml",
         "source": "F:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\bundles\\debug\\res\\drawable\\vpi__tab_indicator.xml"
     },
@@ -14,6 +18,10 @@
     {
         "merged": "F:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_bottom.xml",
         "source": "F:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_bottom.xml"
+    },
+    {
+        "merged": "G:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\vpi__tab_indicator.xml",
+        "source": "G:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\bundles\\debug\\res\\drawable\\vpi__tab_indicator.xml"
     },
     {
         "merged": "F:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_top.xml",
@@ -34,5 +42,9 @@
     {
         "merged": "G:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\vpi__tab_indicator.xml",
         "source": "G:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\bundles\\debug\\res\\drawable\\vpi__tab_indicator.xml"
+    },
+    {
+        "merged": "G:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_bottom.xml",
+        "source": "G:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_bottom.xml"
     }
 ]

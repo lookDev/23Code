@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import com.boyou.autoservice.util.sysutil.DensityUtil
+import com.boyou.autoservice.util.sysutil.DeviceUtil
 import com.bumptech.glide.Glide
 import com.mrper.code23.R
 import com.mrper.code23.model.DemoInfoEntry
@@ -16,9 +18,11 @@ import com.mrper.code23.model.DemoInfoEntry
 class DemoAdapter(val context: Context?,demolist: MutableList<DemoInfoEntry>?) : BaseAdapter() {
 
     var demolist: MutableList<DemoInfoEntry>? = null
+    private var imageWidth: Int = 0
 
     init {
         this.demolist = demolist
+        this.imageWidth = (DeviceUtil.getScreenWidth(context!!) - DensityUtil.dip2px(context,40f))/2
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
@@ -32,11 +36,17 @@ class DemoAdapter(val context: Context?,demolist: MutableList<DemoInfoEntry>?) :
             holder.txtProName = itemView.findViewById(R.id.txtProName) as TextView
             holder.txtPubTime = itemView.findViewById(R.id.txtPubTime) as TextView
             holder.txtDesIntro = itemView.findViewById(R.id.txtDesIntro) as TextView
+            //数据赋值
             itemView.tag = holder
         }else{
             holder = itemView.tag as ViewHolder
         }
         Glide.with(context).load(item!!.pic).into(holder.imgPicture)
+        //设置图片布局参数
+        val imgParams = holder.imgPicture?.layoutParams
+        imgParams?.width = imageWidth
+        imgParams?.height = imageWidth * 568 / 320
+        holder.imgPicture?.layoutParams = imgParams
         holder.txtProName?.text = item.proName
         holder.txtPubTime?.text = item.pubTime
         holder.txtDesIntro?.text = item.desIntro

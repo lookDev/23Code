@@ -4,6 +4,10 @@
         "source": "G:\\android\\AutoService\\lib-pull2refresh\\src\\main\\res\\anim\\slide_out_to_top.xml"
     },
     {
+        "merged": "G:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\debug\\anim\\slide_in_from_bottom.xml",
+        "source": "G:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\anim\\slide_in_from_bottom.xml"
+    },
+    {
         "merged": "F:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\debug\\anim\\slide_in_from_top.xml",
         "source": "F:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\anim\\slide_in_from_top.xml"
     },
@@ -36,6 +40,10 @@
         "source": "F:\\android\\AutoService\\lib-pull2refresh\\src\\main\\res\\anim\\slide_out_to_bottom.xml"
     },
     {
+        "merged": "G:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\debug\\anim\\slide_out_to_bottom.xml",
+        "source": "G:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\anim\\slide_out_to_bottom.xml"
+    },
+    {
         "merged": "G:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\debug\\anim\\slide_in_from_top.xml",
         "source": "G:\\android\\AutoService\\lib-pull2refresh\\src\\main\\res\\anim\\slide_in_from_top.xml"
     },
@@ -44,7 +52,15 @@
         "source": "F:\\android\\AutoService\\lib-pull2refresh\\src\\main\\res\\anim\\slide_in_from_bottom.xml"
     },
     {
+        "merged": "G:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\debug\\anim\\slide_in_from_top.xml",
+        "source": "G:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\anim\\slide_in_from_top.xml"
+    },
+    {
         "merged": "G:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\debug\\anim\\slide_out_to_bottom.xml",
         "source": "G:\\android\\AutoService\\lib-pull2refresh\\src\\main\\res\\anim\\slide_out_to_bottom.xml"
+    },
+    {
+        "merged": "G:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\debug\\anim\\slide_out_to_top.xml",
+        "source": "G:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\anim\\slide_out_to_top.xml"
     }
 ]

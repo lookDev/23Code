@@ -20,7 +20,15 @@
         "source": "F:\\android\\AutoService\\lib-pull2refresh\\src\\main\\res\\layout\\pull_to_refresh_header_horizontal.xml"
     },
     {
+        "merged": "G:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\debug\\layout\\pull_to_refresh_header_vertical.xml",
+        "source": "G:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\layout\\pull_to_refresh_header_vertical.xml"
+    },
+    {
         "merged": "F:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\debug\\layout\\pull_to_refresh_header_vertical.xml",
         "source": "F:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\layout\\pull_to_refresh_header_vertical.xml"
+    },
+    {
+        "merged": "G:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\debug\\layout\\pull_to_refresh_header_horizontal.xml",
+        "source": "G:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\layout\\pull_to_refresh_header_horizontal.xml"
     }
 ]
