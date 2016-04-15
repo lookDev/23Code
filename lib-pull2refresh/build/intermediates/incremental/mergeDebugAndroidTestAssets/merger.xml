@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="23.3.0"><source path="F:\android\Code23\lib-pull2refresh\build\intermediates\exploded-aar\com.android.support\support-v4\23.3.0\assets"/></dataSet><dataSet config="debug"><source path="F:\android\Code23\lib-pull2refresh\build\intermediates\bundles\debug\assets"/></dataSet><dataSet config="main"><source path="F:\android\Code23\lib-pull2refresh\src\androidTest\assets"/></dataSet></merger>

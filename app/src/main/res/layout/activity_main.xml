@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.mrper.code23.fewk.widget.SlideMenu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zhy="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/slideMenu"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:clipToPadding="false"
+    android:background="#fff"
+    android:scrollbars="none"
+    zhy:rightPadding="100dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ListView
+            android:id="@+id/lvType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+        </ListView>
+
+        <!-- <include layout="@layout/left_menu2"/>-->
+
+
+        <!--  这个主布局一定要布满，不然布局会乱掉  -->
+        <LinearLayout
+            android:id="@+id/main_layout"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:background="@color/colorPrimaryDark"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize" />
+            <com.mrper.code23.fewk.widget.PullToRefreshStaggeredGridView
+                android:id="@+id/lvDemo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</com.mrper.code23.fewk.widget.SlideMenu>
