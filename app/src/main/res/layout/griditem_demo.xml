@@ -8,6 +8,7 @@
        android:orientation="vertical"
        android:layout_gravity="center"
        android:padding="5dp"
+       android:layout_margin="5dp"
        android:layout_width="match_parent"
        android:layout_height="wrap_content">
        <FrameLayout
@@ -15,7 +16,7 @@
            android:layout_height="wrap_content">
            <ImageView
                android:layout_width="match_parent"
-               android:layout_height="wrap_content"
+               android:layout_height="120dp"
                android:id="@+id/imgPicture"
                android:layout_gravity="center_horizontal" />
        </FrameLayout>
@@ -23,6 +24,7 @@
        <LinearLayout
            android:layout_marginTop="3dp"
            android:orientation="horizontal"
+           android:gravity="center_vertical"
            android:layout_width="match_parent"
            android:layout_height="wrap_content">
 
@@ -32,6 +34,7 @@
                android:layout_height="wrap_content"
                android:textAppearance="?android:attr/textAppearanceMedium"
                android:text="项目名称"
+               android:textSize="14sp"
                android:id="@+id/txtProName" />
 
            <TextView
@@ -39,6 +42,8 @@
                android:layout_height="wrap_content"
                android:textAppearance="?android:attr/textAppearanceSmall"
                android:text="发布时间"
+               android:textColor="#606060"
+               android:textSize="13sp"
                android:id="@+id/txtPubTime" />
        </LinearLayout>
 
@@ -48,6 +53,10 @@
            android:layout_height="wrap_content"
            android:textAppearance="?android:attr/textAppearanceMedium"
            android:text="项目简介"
+           android:textSize="12sp"
+           android:textColor="#808080"
+           android:maxLines="2"
+           android:ellipsize="end"
            android:id="@+id/txtDesIntro" />
    </LinearLayout>
 </LinearLayout>
