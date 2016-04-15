@@ -28,6 +28,7 @@ class MainActivity : BaseActivity() {
         toolbar.setTitleTextColor(Color.WHITE)
         setToolbar(toolbar)
         //设置基本控件
+        slideMenu.sliderFadeColor = Color.TRANSPARENT
         demoAdapter = DemoAdapter(this@MainActivity,demolist)
         lvDemo.setAdapter(demoAdapter)
         //获取页面数据
