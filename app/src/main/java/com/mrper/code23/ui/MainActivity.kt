@@ -27,6 +27,7 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
     private var demolist: MutableList<DemoInfoEntry> = mutableListOf()
     private var demoAdapter: DemoAdapter? = null
     private var currentPage: Int = 0 //当前页码
+    private var typeValue: String = ""//类型名称
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,12 +47,14 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
     }
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        throw UnsupportedOperationException()
+        val item = lvType.getItemAtPosition(position) as TypeInfoEntry
+        typeValue = item.typeValue
+        getDemoList(currentPage + 1)
     }
 
     override fun onPullDownToRefresh(refreshView: PullToRefreshBase<StaggeredGridView>?) = loadDemoType()//获取案例类型
 
-    override fun onPullUpToRefresh(refreshView: PullToRefreshBase<StaggeredGridView>?) = getDemoList("",currentPage + 1)
+    override fun onPullUpToRefresh(refreshView: PullToRefreshBase<StaggeredGridView>?) = getDemoList(currentPage + 1)
 
     /**  获取案例类型 **/
     private fun loadDemoType(){
@@ -75,7 +78,7 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
      * @param typeName 类型名称
      * @param pagesize 页码
      */
-    private fun getDemoList(typeName: String,pagesize: Int) {
+    private fun getDemoList(pagesize: Int,typeName: String = typeValue) {
         HttpManager.httpClient.get(this,HttpManager.getAbsoluteURL(typeName + "/page/$pagesize"),object: AsyncHttpResponseHandler(){
             override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?) {
                 parseDemoList(String(responseBody!!,charset("utf-8")))
