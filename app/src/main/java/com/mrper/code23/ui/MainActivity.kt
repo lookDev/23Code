@@ -2,11 +2,17 @@ package com.mrper.code23.ui
 
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import com.boyou.autoservice.util.sysutil.ToastUtil
+import com.etsy.android.grid.StaggeredGridView
+import com.handmark.pulltorefresh.library.PullToRefreshBase
 import com.loopj.android.http.AsyncHttpResponseHandler
 import com.mrper.code23.R
 import com.mrper.code23.api.HttpManager
 import com.mrper.code23.data.adapter.DemoAdapter
+import com.mrper.code23.ext.listener.OnSuperScrollListener
 import com.mrper.code23.fewk.annotation.ContentView
 import com.mrper.code23.fewk.ui.BaseActivity
 import com.mrper.code23.model.DemoInfoEntry
@@ -16,10 +22,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.util.regex.Pattern
 
 @ContentView(R.layout.activity_main)
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<StaggeredGridView>,AdapterView.OnItemClickListener {
 
     private var demolist: MutableList<DemoInfoEntry> = mutableListOf()
     private var demoAdapter: DemoAdapter? = null
+    private var currentPage: Int = 0 //当前页码
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,19 +35,37 @@ class MainActivity : BaseActivity() {
         toolbar.setTitleTextColor(Color.WHITE)
         setToolbar(toolbar)
         //设置基本控件
+        lvType.onItemClickListener = this
         slideMenu.sliderFadeColor = Color.TRANSPARENT
         demoAdapter = DemoAdapter(this@MainActivity,demolist)
+        lvDemo.mode = PullToRefreshBase.Mode.BOTH
+        lvDemo.setOnScrollListener(OnSuperScrollListener(application))
+        lvDemo.setOnRefreshListener(this)
         lvDemo.setAdapter(demoAdapter)
-        //获取页面数据
+        loadDemoType()//获取案例类型
+    }
+
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        throw UnsupportedOperationException()
+    }
+
+    override fun onPullDownToRefresh(refreshView: PullToRefreshBase<StaggeredGridView>?) = loadDemoType()//获取案例类型
+
+    override fun onPullUpToRefresh(refreshView: PullToRefreshBase<StaggeredGridView>?) = getDemoList("",currentPage + 1)
+
+    /**  获取案例类型 **/
+    private fun loadDemoType(){
         HttpManager.httpClient.get(this,HttpManager.BaseURL,object: AsyncHttpResponseHandler(){
             override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?) {
                 var responseResult = String(responseBody!!,charset("utf-8"))
                 parseDemoTypes(responseResult)//解析类型列表
-                parseDemoList(responseResult)//解析案例列表数据
+                parseDemoList(responseResult,true)//解析案例列表数据
+                finishDataLoad()//完成数据加载
             }
 
             override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?, error: Throwable?) {
-
+                finishDataLoad()//完成数据加载
+                ToastUtil.showShortToast(context,"网络错误，请检查您的网络")
             }
         })
     }
@@ -54,10 +79,12 @@ class MainActivity : BaseActivity() {
         HttpManager.httpClient.get(this,HttpManager.getAbsoluteURL(typeName + "/page/$pagesize"),object: AsyncHttpResponseHandler(){
             override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?) {
                 parseDemoList(String(responseBody!!,charset("utf-8")))
+                finishDataLoad()//完成数据加载
             }
 
             override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?, error: Throwable?) {
-
+                finishDataLoad()//完成数据加载
+                ToastUtil.showShortToast(context,"网络错误，请检查您的网络")
             }
         })
     }
@@ -116,9 +143,23 @@ class MainActivity : BaseActivity() {
                 demoItem.typeName = typeMatcher.group(1)
             demolist.add(demoItem)
         }
-        if(isClearData) this@MainActivity.demolist.clear()
-        this@MainActivity.demolist.addAll(demolist)
-        demoAdapter?.notifyDataSetChanged()
+        if(demolist.size > 0) {
+            if (isClearData){
+                this@MainActivity.currentPage = 1;//设置页码为1
+                this@MainActivity.demolist.clear()
+            }else{
+                this@MainActivity.currentPage += 1;//设置页码为1
+            }
+            this@MainActivity.demolist.addAll(demolist)
+            demoAdapter?.notifyDataSetChanged()
+        }else{
+            ToastUtil.showShortToast(this@MainActivity,"已是最后一页")
+        }
+    }
+
+    /**  完成数据加载  **/
+    private fun finishDataLoad(){
+        if(lvDemo.isRefreshing) lvDemo.onRefreshComplete()
     }
 
     //<article\s+id="entry-\d+"[^>]+>([\s\S]*?)</article>  匹配某一列

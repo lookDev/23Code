@@ -22,6 +22,7 @@ open class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        this.context = this@BaseActivity
         if (isHideSystemBar) {
             //如果不隐藏系统状态栏
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)

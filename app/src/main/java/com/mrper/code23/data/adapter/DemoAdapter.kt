@@ -22,7 +22,8 @@ class DemoAdapter(val context: Context?,demolist: MutableList<DemoInfoEntry>?) :
 
     init {
         this.demolist = demolist
-        this.imageWidth = (DeviceUtil.getScreenWidth(context!!) - DensityUtil.dip2px(context,40f))/2
+        this.imageWidth = (DeviceUtil.getScreenWidth(context!!)
+                - DensityUtil.dip2px(context,35f + 10f * (COLUMN_COUNT - 1)))/COLUMN_COUNT
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
@@ -60,6 +61,8 @@ class DemoAdapter(val context: Context?,demolist: MutableList<DemoInfoEntry>?) :
     override fun getCount(): Int = demolist?.count() ?: 0
 
     companion object {
+
+        @JvmStatic val COLUMN_COUNT = 2
 
         class ViewHolder(
                 var imgPicture: ImageView? = null,

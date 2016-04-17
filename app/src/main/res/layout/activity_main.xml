@@ -28,11 +28,7 @@
                 android:id="@+id/lvType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="none">
-
-            </ListView>
-
-            <!-- <include layout="@layout/left_menu2"/>-->
+                android:scrollbars="none"/>
 
         </LinearLayout>
         <!--  这个主布局一定要布满，不然布局会乱掉  -->
@@ -45,6 +41,8 @@
 
             <com.mrper.code23.fewk.widget.PullToRefreshStaggeredGridView
                 android:id="@+id/lvDemo"
+                android:clipToPadding="false"
+                android:padding="2dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>
