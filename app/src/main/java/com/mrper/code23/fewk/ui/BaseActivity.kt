@@ -52,7 +52,7 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     /** 页面上的toolbar的导航图标被点击时执行   */
-    protected fun onToolbarNavigationClicked() {
+    protected open fun onToolbarNavigationClicked() {
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {

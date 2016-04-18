@@ -1,10 +1,14 @@
 package com.mrper.code23.ui
 
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
+import android.support.v7.app.ActionBarDrawerToggle
+import android.view.Gravity
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import com.boyou.autoservice.util.sysutil.ActivityUtil
 import com.boyou.autoservice.util.sysutil.ToastUtil
 import com.etsy.android.grid.StaggeredGridView
 import com.handmark.pulltorefresh.library.PullToRefreshBase
@@ -37,22 +41,48 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
         toolbar.title = "23Code"
         toolbar.setTitleTextColor(Color.WHITE)
         setToolbar(toolbar)
+        setDrawerArrow()
         //设置基本控件
         lvType.onItemClickListener = this
-        slideMenu.sliderFadeColor = Color.TRANSPARENT
         demoAdapter = DemoAdapter(this@MainActivity,demolist)
         lvDemo.mode = PullToRefreshBase.Mode.BOTH
         lvDemo.setOnScrollListener(OnSuperScrollListener(application))
         lvDemo.setOnRefreshListener(this)
         lvDemo.setAdapter(demoAdapter)
+        lvDemo.setOnItemClickListener(this)
         getDemoList(1,true)//获取案例类型
     }
 
-    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        val item = lvType.getItemAtPosition(position) as TypeInfoEntry
-        typeValue = item.typeValue
-        getDemoList(1,true)
-        slideMenu.closePane()
+    private fun setDrawerArrow(){
+        val toggerDrawerArrow = ActionBarDrawerToggle(this, slideMenu, toolbar, R.string.app_name, R.string.app_name)
+        toggerDrawerArrow.syncState()//
+//        slideMenu.setScrimColor(Color.TRANSPARENT)
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+            slideMenu.addDrawerListener(toggerDrawerArrow)
+        else slideMenu.setDrawerListener(toggerDrawerArrow)
+    }
+
+    override fun onToolbarNavigationClicked(){
+        if(slideMenu.isDrawerOpen(Gravity.LEFT))
+            slideMenu.closeDrawers()
+        else
+            slideMenu.openDrawer(Gravity.LEFT)
+    }
+
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) = when(parent?.id){
+        R.id.lvType -> run {
+            val item = lvType.getItemAtPosition(position) as TypeInfoEntry
+            typeValue = item.typeValue
+            getDemoList(1,true)
+            slideMenu.closeDrawers()
+        }
+        R.id.PullToRefreshMultiColumnListView -> run {
+            val item = demoAdapter!!.getItem(position) as DemoInfoEntry
+            val data = Bundle()
+            data.putString("projectValue", item.proUrl)
+            ActivityUtil.goForward(context,DemoDetailActivity::class.java,false,data)
+        }
+        else -> println()
     }
 
     override fun onPullDownToRefresh(refreshView: PullToRefreshBase<StaggeredGridView>?) = getDemoList(1,true)//获取案例类型
