@@ -9,8 +9,8 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.boyou.autoservice.util.CommonUtil
-import com.boyou.autoservice.util.sysutil.ActivityUtil
-import com.boyou.autoservice.util.sysutil.ToastUtil
+import com.mrper.code23.fewk.utils.ActivityUtil
+import com.mrper.code23.fewk.utils.ToastUtil
 import com.etsy.android.grid.StaggeredGridView
 import com.handmark.pulltorefresh.library.PullToRefreshBase
 import com.loopj.android.http.AsyncHttpResponseHandler

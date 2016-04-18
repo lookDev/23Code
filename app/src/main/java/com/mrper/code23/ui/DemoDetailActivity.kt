@@ -3,8 +3,8 @@ package com.mrper.code23.ui
 import android.os.Bundle
 import android.text.Html
 import com.boyou.autoservice.util.CommonUtil
-import com.boyou.autoservice.util.sysutil.ActivityUtil
-import com.boyou.autoservice.util.sysutil.ToastUtil
+import com.mrper.code23.fewk.utils.ActivityUtil
+import com.mrper.code23.fewk.utils.ToastUtil
 import com.loopj.android.http.AsyncHttpResponseHandler
 import com.mrper.code23.R
 import com.mrper.code23.api.HttpManager

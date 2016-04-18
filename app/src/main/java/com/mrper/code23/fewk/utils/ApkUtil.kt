@@ -1,4 +1,4 @@
-package com.boyou.autoservice.util.sysutil
+package com.mrper.code23.fewk.utils
 
 import android.annotation.TargetApi
 import android.app.Activity

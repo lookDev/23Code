@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
-import com.boyou.autoservice.util.sysutil.DensityUtil
-import com.boyou.autoservice.util.sysutil.DeviceUtil
+import com.mrper.code23.fewk.utils.DensityUtil
+import com.mrper.code23.fewk.utils.DeviceUtil
 import com.bumptech.glide.Glide
 import com.makeramen.roundedimageview.RoundedImageView
 import com.mrper.code23.R
