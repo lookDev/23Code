@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -8,51 +9,81 @@
        android:background="@drawable/selector_roundrect_white_lightgray"
        android:orientation="vertical"
        android:layout_gravity="center"
-       android:padding="5dp"
        android:layout_margin="5dp"
        android:layout_width="match_parent"
        android:layout_height="wrap_content">
        <FrameLayout
            android:layout_width="match_parent"
            android:layout_height="wrap_content">
-           <ImageView
+           <com.makeramen.roundedimageview.RoundedImageView
+               android:id="@+id/imgPicture"
+               android:layout_marginLeft="-1dp"
+               android:layout_marginRight="-1dp"
                android:layout_width="match_parent"
                android:layout_height="120dp"
-               android:scaleType="fitXY"
-               android:id="@+id/imgPicture"
-               android:layout_gravity="center_horizontal" />
-       </FrameLayout>
-
-       <LinearLayout
-           android:layout_marginTop="3dp"
-           android:orientation="horizontal"
-           android:gravity="center_vertical"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content">
-
-           <TextView
-               android:layout_weight="1.0"
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:singleLine="true"
-               android:textAppearance="?android:attr/textAppearanceMedium"
-               android:text="项目名称"
-               android:textSize="14sp"
-               android:id="@+id/txtProName" />
-
+               android:scaleType="centerCrop"
+               app:riv_corner_radius="5dp"/>
            <TextView
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:singleLine="true"
+               android:textAppearance="?android:attr/textAppearanceMedium"
+               android:padding="3dp"
+               android:layout_margin="5dp"
+               android:text="项目类型"
+               android:textSize="12sp"
+               android:textColor="@android:color/white"
+               android:background="@drawable/shape_roundrect_alpha_black"
+               android:id="@+id/txtType" />
+
+           <TextView
+               android:layout_marginLeft="5dp"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:singleLine="true"
+               android:padding="3dp"
+               android:layout_marginRight="5dp"
+               android:layout_marginBottom="10dp"
                android:textAppearance="?android:attr/textAppearanceSmall"
                android:text="发布时间"
-               android:textColor="#606060"
-               android:textSize="13sp"
+               android:textSize="12sp"
+               android:textColor="@android:color/white"
+               android:layout_gravity="right|bottom"
+               android:background="@drawable/shape_roundrect_alpha_black"
                android:id="@+id/txtPubTime" />
-       </LinearLayout>
+
+       </FrameLayout>
+
+       <FrameLayout
+           android:layout_marginTop="-5dp"
+           android:background="#fff"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <TextView
+               android:paddingLeft="5dp"
+               android:paddingRight="5dp"
+               android:paddingTop="5dp"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:singleLine="true"
+               android:textAppearance="?android:attr/textAppearanceMedium"
+               android:text="项目名称"
+               android:textStyle="bold"
+               android:textSize="15sp"
+               android:id="@+id/txtProName" />
+           <View
+               android:layout_width="match_parent"
+               android:layout_height="0.8dp"
+               android:background="#eaeaea"/>
+
+       </FrameLayout>
 
        <TextView
-           android:layout_marginTop="3dp"
+           android:paddingLeft="5dp"
+           android:paddingRight="5dp"
+           android:paddingBottom="5dp"
+           android:layout_marginTop="2dp"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:textAppearance="?android:attr/textAppearanceMedium"

@@ -9,6 +9,7 @@ import com.etsy.android.grid.StaggeredGridView;
 import com.handmark.pulltorefresh.library.PullToRefreshAdapterViewBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.mrper.code23.R;
+import com.mrper.code23.data.adapter.DemoAdapter;
 
 /**
  * Created by admin on 2016/3/11.
@@ -48,6 +49,14 @@ public class PullToRefreshStaggeredGridView extends PullToRefreshAdapterViewBase
         ListAdapter adapter = getRefreshableView().getAdapter();
         if(adapter == null) return null;
         return adapter.getItem(position);
+    }
+
+    /** 滑动大顶部 **/
+    public void smoothScroll2Top(){
+        StaggeredGridView contentView = getRefreshableView();
+        contentView.resetToTop();
+        DemoAdapter adapter = (DemoAdapter)contentView.getAdapter();
+        if(adapter!=null) adapter.notifyDataSetChanged();
     }
 
 }
