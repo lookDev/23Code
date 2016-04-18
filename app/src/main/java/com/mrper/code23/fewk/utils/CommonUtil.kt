@@ -23,10 +23,7 @@ object CommonUtil {
      * @param pattern
      * @param input
      */
-    @JvmStatic fun regexMatcher(pattern: String,input: String): Matcher {
-        var typePattern = Pattern.compile(pattern)
-        return typePattern.matcher(input)
-    }
+    @JvmStatic fun regexMatcher(pattern: String,input: String): Matcher = Pattern.compile(pattern).matcher(input)
 
 
 }
