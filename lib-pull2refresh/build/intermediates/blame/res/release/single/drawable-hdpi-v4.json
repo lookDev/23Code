@@ -64,10 +64,6 @@
         "source": "G:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\drawable-hdpi\\default_ptr_flip.png"
     },
     {
-        "merged": "F:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\default_ptr_rotate.png",
-        "source": "F:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\drawable-hdpi\\default_ptr_rotate.png"
-    },
-    {
         "merged": "F:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\indicator_arrow.png",
         "source": "F:\\android\\AutoService\\lib-pull2refresh\\src\\main\\res\\drawable-hdpi\\indicator_arrow.png"
     },

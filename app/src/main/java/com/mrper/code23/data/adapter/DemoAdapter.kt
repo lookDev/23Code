@@ -49,7 +49,7 @@ class DemoAdapter(val context: Context?,demolist: MutableList<DemoInfoEntry>?) :
         //设置图片布局参数
         val imgParams = holder.imgPicture?.layoutParams
         imgParams?.width = imageWidth
-        imgParams?.height = imageWidth * 3 / 4
+        imgParams?.height = imageWidth * 4 / 3
         Glide.with(context).load(item!!.pic)
                 .asBitmap()
                 .override(imgParams?.width?:0,imgParams?.height?:0)

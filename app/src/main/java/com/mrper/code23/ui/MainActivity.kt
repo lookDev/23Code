@@ -8,6 +8,7 @@ import android.view.Gravity
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import com.boyou.autoservice.util.CommonUtil
 import com.boyou.autoservice.util.sysutil.ActivityUtil
 import com.boyou.autoservice.util.sysutil.ToastUtil
 import com.etsy.android.grid.StaggeredGridView
@@ -23,7 +24,6 @@ import com.mrper.code23.model.DemoInfoEntry
 import com.mrper.code23.model.TypeInfoEntry
 import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 @ContentView(R.layout.activity_main)
@@ -79,7 +79,9 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
         R.id.PullToRefreshMultiColumnListView -> run {
             val item = demoAdapter!!.getItem(position) as DemoInfoEntry
             val data = Bundle()
-            data.putString("projectValue", item.proUrl)
+            data.putString("projectName",item.proName)
+            data.putString("projectUrl", item.proUrl)
+            data.putString("projectDes", item.desIntro)
             ActivityUtil.goForward(context,DemoDetailActivity::class.java,false,data)
         }
         else -> println()
@@ -94,7 +96,8 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
      * @param currentPage 页码
      */
     private fun getDemoList(currentPage: Int,isClearData: Boolean = false) {
-        HttpManager.httpClient.get(this,HttpManager.getAbsoluteURL("$typeValue/page/$currentPage"),object: AsyncHttpResponseHandler(){
+        val pageInfo = if(currentPage != 1) "$typeValue/page/$currentPage" else typeValue //区分页码信息，防止不断报错网络错误问题
+        HttpManager.httpClient.get(this,HttpManager.getAbsoluteURL(pageInfo),object: AsyncHttpResponseHandler(){
             override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?) {
                 val responseResult = String(responseBody!!,charset("utf-8"))
                 if(currentPage == 1 && !isGetType) //如果是第一页，解析类型数据
@@ -129,32 +132,32 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
      * @param isClearData 是否情况数据
      */
     private fun parseDemoList(responseBody: String?,isClearData: Boolean = false){
-        var matcher = regexMatcher("<article\\s+id=\"entry[-]\\d+\"[^>]+>([\\s\\S]*?)</article>",responseBody?:"")
+        var matcher = CommonUtil.regexMatcher("<article\\s+id=\"entry[-]\\d+\"[^>]+>([\\s\\S]*?)</article>",responseBody?:"")
         var demolist: MutableList<DemoInfoEntry> = mutableListOf()
         while(matcher.find()){
             val demoItem = DemoInfoEntry()
             var itemContent = matcher.group(1)
             //匹配图标
-            var picMatcher = regexMatcher("<img.+?src=\"(.+?)\" class=\"attachment-thumbnail-wzh size-thumbnail-wzh wp-post-image\"[^>]+>",itemContent)
+            var picMatcher = CommonUtil.regexMatcher("<img.+?src=\"(.+?)\" class=\"attachment-thumbnail-wzh size-thumbnail-wzh wp-post-image\"[^>]+>",itemContent)
             if(picMatcher.find())
                 demoItem.pic = picMatcher.group(1) //图片
             //匹配项目名称
-            var nameMatcher = regexMatcher("<a href=\"(.+?)\" rel=\"bookmark\" [^>]+>([^>]+)</a>",itemContent)
+            var nameMatcher = CommonUtil.regexMatcher("<a href=\"(.+?)\" rel=\"bookmark\" [^>]+>([^>]+)</a>",itemContent)
             if(nameMatcher.find()) {
                 demoItem.proUrl = nameMatcher.group(1)
                 demoItem.proName = nameMatcher.group(2)
             }
             //匹配发布时间
-            var timeMatcher = regexMatcher("<a href=\".+?\" title=\"由23Code发布\" rel=\"author\">23Code</a>([^<]+)</p>",itemContent)
+            var timeMatcher = CommonUtil.regexMatcher("<a href=\".+?\" title=\"[.+?]\" rel=\"author\">23Code</a>([^<]+)</p>",itemContent)
             if(timeMatcher.find())
                 demoItem.pubTime = timeMatcher.group(1).replace("on","")
                         .replace("年",".").replace("月",".").replace("日","")
             //匹配说明
-            var desMatcher = regexMatcher("<div class=\"text\">[^<]+<p>([^<]+)</p>[^<]+</div>",itemContent)
+            var desMatcher = CommonUtil.regexMatcher("<div class=\"text\">[^<]+<p>([^<]+)</p>[^<]+</div>",itemContent)
             if(desMatcher.find())
                 demoItem.desIntro = desMatcher.group(1)
             //匹配分类
-            var typeMatcher = regexMatcher("<li class=\"categories\"><i[^>]+></i><a[^>]+>([^<]+)</a></li>",itemContent)
+            var typeMatcher = CommonUtil.regexMatcher("<li class=\"categories\"><i[^>]+></i><a[^>]+>([^<]+)</a></li>",itemContent)
             if(typeMatcher.find())
                 demoItem.typeName = typeMatcher.group(1)
             demolist.add(demoItem)
@@ -163,6 +166,7 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
             if (isClearData){
                 this@MainActivity.currentPage = 1//设置页码为1
                 this@MainActivity.demolist.clear()
+                demolist.removeAt(0)//移除第一项
             }else{
                 this@MainActivity.currentPage += 1//设置页码为1
             }
@@ -173,12 +177,6 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
         }else{
             ToastUtil.showShortToast(this@MainActivity,"已是最后一页")
         }
-    }
-
-    /** 正则匹配 **/
-    private fun regexMatcher(pattern: String,input: String): Matcher {
-        var typePattern = Pattern.compile(pattern)
-        return typePattern.matcher(input)
     }
 
     /**  完成数据加载  **/

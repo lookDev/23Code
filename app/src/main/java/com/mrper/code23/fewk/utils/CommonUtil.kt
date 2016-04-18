@@ -1,16 +1,8 @@
 package com.boyou.autoservice.util
 
-import android.content.Context
-import android.graphics.Color
-import android.graphics.Paint
-import android.text.TextUtils
-import android.util.Log
-import android.webkit.WebView
-import android.widget.AbsListView
-import android.widget.ListAdapter
-import android.widget.TextView
 import com.mrper.code23.fewk.annotation.ContentView
-import java.io.File
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 
 /**
  * Created by Mrper on 15-12-9.
@@ -24,5 +16,17 @@ object CommonUtil {
      * @param instance fragment或activity实例对象
      */
     @JvmStatic fun getLayoutId(instance: Any): Int = instance.javaClass.getAnnotation(ContentView::class.java)?.value ?: 0
+
+
+    /**
+     * 正则表达式匹配
+     * @param pattern
+     * @param input
+     */
+    @JvmStatic fun regexMatcher(pattern: String,input: String): Matcher {
+        var typePattern = Pattern.compile(pattern)
+        return typePattern.matcher(input)
+    }
+
 
 }

@@ -60,10 +60,6 @@
         "source": "G:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_selected_pressed_holo.9.png"
     },
     {
-        "merged": "F:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\default_ptr_rotate.png",
-        "source": "F:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\default_ptr_rotate.png"
-    },
-    {
         "merged": "F:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\default_ptr_rotate.png",
         "source": "F:\\android\\AutoService\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\default_ptr_rotate.png"
     },
