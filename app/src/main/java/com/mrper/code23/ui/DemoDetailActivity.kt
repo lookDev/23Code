@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.text.Html
 import android.text.TextUtils
 import com.boyou.autoservice.util.CommonUtil
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.loopj.android.http.AsyncHttpResponseHandler
 import com.mrper.code23.R
 import com.mrper.code23.api.HttpManager
@@ -18,8 +16,7 @@ import com.mrper.code23.model.DemoCommentInfoEntry
 import com.mrper.code23.model.DemoDetailInfoEntry
 import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.activity_demo_detail.*
-import org.json.JSONArray
-import org.json.JSONObject
+import java.util.regex.Pattern
 
 @ContentView(R.layout.activity_demo_detail)
 class DemoDetailActivity : BaseActivity() {
@@ -116,18 +113,28 @@ class DemoDetailActivity : BaseActivity() {
         val pubTimeMatcher = CommonUtil.regexMatcher("<a.+?rel=\"author\">23Code</a>\\s*on\\s*([^<]+)</p>",responseBody)
         if(pubTimeMatcher.find())
             demoDetailInfo.projectPubTime = pubTimeMatcher.group(1)
-        val commentMatcher = CommonUtil.regexMatcher("UYAN_RENDER[.]comment(.+?)\\);",responseBody)
-        if(commentMatcher.find()){
-            val commentData: JSONArray = JSONObject(commentMatcher.group(1)).getJSONArray("data")
-            val commentlist:MutableList<DemoCommentInfoEntry> = Gson().fromJson<MutableList<DemoCommentInfoEntry>>(commentData.toString(),
-                    object : TypeToken<MutableList<DemoCommentInfoEntry>>() {}.type)
-            if(commentlist.size > 0){
-                this@DemoDetailActivity.commentlist.addAll(commentlist)
-                commentAdapter?.notifyDataSetChanged()
-                txtEmptyComment.text = ""
-            }else{
-                txtEmptyComment.text = "暂无评论数据"
-            }
+        //匹配评论数据
+        val commentMatcher = CommonUtil.regexMatcher(
+                """<li class="clearfix">
+					<a[^>]+>
+						<span class="tab-entry-image"><img[^>]+></span>
+
+						<span class="tab-entry-title">(.+?)says:</span>
+						<span class="tab-entry-comment">.+?</span>
+					</a>
+				</li>""",responseBody, Pattern.MULTILINE)
+        val commentlist:MutableList<DemoCommentInfoEntry> = mutableListOf()
+        while(commentMatcher.find()){
+            commentlist.add(DemoCommentInfoEntry(
+                    uname = commentMatcher.group(2),
+                    cnt = commentMatcher.group(3),
+                    uface = "http://www.android.com/"
+            ))
+        }
+        if(commentlist.size > 0){
+            this@DemoDetailActivity.commentlist.addAll(commentlist)
+            commentAdapter?.notifyDataSetChanged()
+            txtEmptyComment.text = ""
         }else{
             txtEmptyComment.text = "暂无评论数据"
         }

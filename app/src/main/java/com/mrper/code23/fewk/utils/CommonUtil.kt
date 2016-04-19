@@ -22,8 +22,9 @@ object CommonUtil {
      * 正则表达式匹配
      * @param pattern
      * @param input
+     * @param flags
      */
-    @JvmStatic fun regexMatcher(pattern: String,input: String): Matcher = Pattern.compile(pattern).matcher(input)
+    @JvmStatic fun regexMatcher(pattern: String,input: String,flags: Int = 0): Matcher = Pattern.compile(pattern,flags).matcher(input)
 
 
 }
