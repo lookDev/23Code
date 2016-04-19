@@ -82,13 +82,13 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
 
     override fun onPullDownToRefresh(refreshView: PullToRefreshBase<StaggeredGridView>?) = getDemoList(1,true)//获取案例类型
 
-    override fun onPullUpToRefresh(refreshView: PullToRefreshBase<StaggeredGridView>?) = getDemoList(currentPage + 1)
+    override fun onPullUpToRefresh(refreshView: PullToRefreshBase<StaggeredGridView>?): Unit = getDemoList(currentPage + 1)
 
     /**
      * 获取案例列表数据
-     * @param currentPage 页码
+     * @param currentPage 页码S
      */
-    private fun getDemoList(currentPage: Int,isClearData: Boolean = false) {
+   private fun getDemoList(currentPage: Int, isClearData: Boolean = false){
         HttpManager.httpClient.get(this,HttpManager.getAbsoluteURL(if(currentPage != 1) "$typeValue/page/$currentPage" else typeValue),object: AsyncHttpResponseHandler(){
             override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?) {
                 val responseResult = String(responseBody!!,charset("utf-8"))
@@ -104,8 +104,7 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
             }
         })
     }
-
-    /**
+            /**
      * 解析案例类型
      * @param responseBody 结果数据
      */
