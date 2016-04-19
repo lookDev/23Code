@@ -15,12 +15,8 @@ open class OnSuperScrollListener(val context: Application) : AbsListView.OnScrol
     override fun onScroll(view: AbsListView?, firstVisibleItem: Int, visibleItemCount: Int, totalItemCount: Int) {
         when(scrollState){
             AbsListView.OnScrollListener.SCROLL_STATE_IDLE,
-            AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL->{
-                Glide.with(context).resumeRequests()
-            }
-            AbsListView.OnScrollListener.SCROLL_STATE_FLING -> {
-                Glide.with(context).pauseRequests()
-            }
+            AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL-> Glide.with(context).resumeRequestsRecursive()
+            AbsListView.OnScrollListener.SCROLL_STATE_FLING -> Glide.with(context).pauseRequestsRecursive()
         }
     }
 
