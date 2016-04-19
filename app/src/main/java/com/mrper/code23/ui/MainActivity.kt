@@ -24,7 +24,6 @@ import com.mrper.code23.model.DemoInfoEntry
 import com.mrper.code23.model.TypeInfoEntry
 import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.regex.Pattern
 
 @ContentView(R.layout.activity_main)
 class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<StaggeredGridView>,AdapterView.OnItemClickListener {
@@ -111,8 +110,7 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
      * @param responseBody 结果数据
      */
     private fun parseDemoTypes(responseBody: String?){
-        val htmlMatch = Pattern.compile("<li class=\"cat-item cat-item-\\d+\"><a href=\"http://www.23code.com/(.+?)/\"[^>]*>(.+?)</a>")
-        val matcher = htmlMatch.matcher(responseBody)
+        val matcher = CommonUtil.regexMatcher("<li class=\"cat-item cat-item-\\d+\"><a href=\"http://www.23code.com/(.+?)/\"[^>]*>(.+?)</a>",responseBody!!)
         var typelist: MutableList<TypeInfoEntry> = mutableListOf()
         while(matcher.find()) typelist.add(TypeInfoEntry(matcher.group(2),matcher.group(1)))
         lvType.adapter = ArrayAdapter(this@MainActivity,android.R.layout.simple_list_item_1,typelist)
