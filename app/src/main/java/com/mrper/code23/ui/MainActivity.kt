@@ -8,7 +8,6 @@ import android.view.Gravity
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import com.mrper.code23.fewk.utils.CommonUtil
 import com.etsy.android.grid.StaggeredGridView
 import com.handmark.pulltorefresh.library.PullToRefreshBase
 import com.loopj.android.http.AsyncHttpResponseHandler
@@ -19,6 +18,7 @@ import com.mrper.code23.ext.listener.OnSuperScrollListener
 import com.mrper.code23.fewk.annotation.ContentView
 import com.mrper.code23.fewk.ui.BaseActivity
 import com.mrper.code23.fewk.utils.ActivityUtil
+import com.mrper.code23.fewk.utils.CommonUtil
 import com.mrper.code23.fewk.utils.ToastUtil
 import com.mrper.code23.model.DemoInfoEntry
 import com.mrper.code23.model.TypeInfoEntry
@@ -57,17 +57,11 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
         val toggerDrawerArrow = ActionBarDrawerToggle(this, slideMenu, toolbar, R.string.app_name, R.string.app_name)
         toggerDrawerArrow.syncState()//
 //        slideMenu.setScrimColor(Color.TRANSPARENT)
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-            slideMenu.addDrawerListener(toggerDrawerArrow)
-        else slideMenu.setDrawerListener(toggerDrawerArrow)
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) slideMenu.addDrawerListener(toggerDrawerArrow) else slideMenu.setDrawerListener(toggerDrawerArrow)
     }
 
-    override fun onToolbarNavigationClicked(){
-        if(slideMenu.isDrawerOpen(Gravity.LEFT))
-            slideMenu.closeDrawers()
-        else
-            slideMenu.openDrawer(Gravity.LEFT)
-    }
+    override fun onToolbarNavigationClicked()
+            = if(slideMenu.isDrawerOpen(Gravity.LEFT)) slideMenu.closeDrawers() else slideMenu.openDrawer(Gravity.LEFT)
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) = when(parent?.id){
         R.id.lvType -> run {
@@ -96,8 +90,7 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
      * @param currentPage 页码
      */
     private fun getDemoList(currentPage: Int,isClearData: Boolean = false) {
-        val pageInfo = if(currentPage != 1) "$typeValue/page/$currentPage" else typeValue //区分页码信息，防止不断报错网络错误问题
-        HttpManager.httpClient.get(this,HttpManager.getAbsoluteURL(pageInfo),object: AsyncHttpResponseHandler(){
+        HttpManager.httpClient.get(this,HttpManager.getAbsoluteURL(if(currentPage != 1) "$typeValue/page/$currentPage" else typeValue),object: AsyncHttpResponseHandler(){
             override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?) {
                 val responseResult = String(responseBody!!,charset("utf-8"))
                 if(currentPage == 1 && !isGetType) //如果是第一页，解析类型数据
@@ -179,9 +172,7 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
     }
 
     /**  完成数据加载  **/
-    private fun finishDataLoad(){
-        if(lvDemo.isRefreshing) lvDemo.onRefreshComplete()
-    }
+    private fun finishDataLoad() = if(lvDemo.isRefreshing) lvDemo.onRefreshComplete() else println()
 
     //<article\s+id="entry-\d+"[^>]+>([\s\S]*?)</article>  匹配某一列
     //<img.+?src="(.+?)" class="attachment-thumbnail-wzh size-thumbnail-wzh wp-post-image"[^>]+> 匹配ICON

@@ -6,10 +6,10 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.KeyEvent
-import com.mrper.code23.fewk.utils.CommonUtil
-import com.mrper.code23.fewk.utils.ApkUtil
 import com.mrper.code23.R
 import com.mrper.code23.fewk.annotation.BackAction
+import com.mrper.code23.fewk.utils.ApkUtil
+import com.mrper.code23.fewk.utils.CommonUtil
 import com.readystatesoftware.systembartint.SystemBarTintManager
 
 /**
@@ -48,7 +48,7 @@ open class BaseActivity : AppCompatActivity() {
      */
     protected fun setToolbar(toolbar: Toolbar) {
         setSupportActionBar(toolbar)
-        toolbar.setNavigationOnClickListener { v -> onToolbarNavigationClicked() }
+        toolbar.setNavigationOnClickListener { onToolbarNavigationClicked() }
     }
 
     /** 页面上的toolbar的导航图标被点击时执行   */

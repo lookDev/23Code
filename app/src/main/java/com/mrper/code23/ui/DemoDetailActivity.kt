@@ -3,7 +3,6 @@ package com.mrper.code23.ui
 import android.os.Bundle
 import android.text.Html
 import android.text.TextUtils
-import com.mrper.code23.fewk.utils.CommonUtil
 import com.loopj.android.http.AsyncHttpResponseHandler
 import com.mrper.code23.R
 import com.mrper.code23.api.HttpManager
@@ -11,6 +10,7 @@ import com.mrper.code23.data.adapter.CommentAdapter
 import com.mrper.code23.fewk.annotation.ContentView
 import com.mrper.code23.fewk.ui.BaseActivity
 import com.mrper.code23.fewk.utils.ActivityUtil
+import com.mrper.code23.fewk.utils.CommonUtil
 import com.mrper.code23.fewk.utils.ToastUtil
 import com.mrper.code23.model.DemoCommentInfoEntry
 import com.mrper.code23.model.DemoDetailInfoEntry
@@ -61,18 +61,16 @@ class DemoDetailActivity : BaseActivity() {
 //    }
 
     /**  获取demo的详细信息  **/
-    private fun getDemoDetailInfo() {
-        HttpManager.httpClient.get(context, projectUrl, object : AsyncHttpResponseHandler() {
-            override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?) {
-                val resultString = String(responseBody!!, charset("utf-8"))
-                parseDemoDetailInfo(resultString)
-            }
+    private fun getDemoDetailInfo() = HttpManager.httpClient.get(context, projectUrl, object : AsyncHttpResponseHandler() {
+        override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?) {
+            val resultString = String(responseBody!!, charset("utf-8"))
+            parseDemoDetailInfo(resultString)
+        }
 
-            override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?, error: Throwable?) {
-                ToastUtil.showShortToast(context, "网络错误，请检查您的网络")
-            }
-        })
-    }
+        override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?, error: Throwable?) {
+            ToastUtil.showShortToast(context, "网络错误，请检查您的网络")
+        }
+    })
 
     /**
      * 解析DEMO的详情数据
