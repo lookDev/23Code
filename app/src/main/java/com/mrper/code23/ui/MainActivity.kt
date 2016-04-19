@@ -9,8 +9,6 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.boyou.autoservice.util.CommonUtil
-import com.mrper.code23.fewk.utils.ActivityUtil
-import com.mrper.code23.fewk.utils.ToastUtil
 import com.etsy.android.grid.StaggeredGridView
 import com.handmark.pulltorefresh.library.PullToRefreshBase
 import com.loopj.android.http.AsyncHttpResponseHandler
@@ -20,6 +18,8 @@ import com.mrper.code23.data.adapter.DemoAdapter
 import com.mrper.code23.ext.listener.OnSuperScrollListener
 import com.mrper.code23.fewk.annotation.ContentView
 import com.mrper.code23.fewk.ui.BaseActivity
+import com.mrper.code23.fewk.utils.ActivityUtil
+import com.mrper.code23.fewk.utils.ToastUtil
 import com.mrper.code23.model.DemoInfoEntry
 import com.mrper.code23.model.TypeInfoEntry
 import cz.msebera.android.httpclient.Header
@@ -148,10 +148,9 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
                 demoItem.proName = nameMatcher.group(2)
             }
             //匹配发布时间
-            var timeMatcher = CommonUtil.regexMatcher("<a href=\".+?\" title=\"[.+?]\" rel=\"author\">23Code</a>([^<]+)</p>",itemContent)
+            var timeMatcher = CommonUtil.regexMatcher("<a.+?rel=\"author\">23Code</a>\\s*on\\s*([^<]+)</p>",itemContent)
             if(timeMatcher.find())
-                demoItem.pubTime = timeMatcher.group(1).replace("on","")
-                        .replace("年",".").replace("月",".").replace("日","")
+                demoItem.pubTime = timeMatcher.group(1).replace("年",".").replace("月",".").replace("日","")
             //匹配说明
             var desMatcher = CommonUtil.regexMatcher("<div class=\"text\">[^<]+<p>([^<]+)</p>[^<]+</div>",itemContent)
             if(desMatcher.find())

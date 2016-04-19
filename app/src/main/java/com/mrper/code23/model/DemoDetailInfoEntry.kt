@@ -7,6 +7,7 @@ data class DemoDetailInfoEntry(
       @JvmField var projectName: String = "",
       @JvmField var projectImage: String = "",
       @JvmField var projectDes: String = "",
+      @JvmField var projectPubTime: String = "",
       @JvmField var projectGithub: String = "",
       @JvmField var projectGithubDes: String = "",
       @JvmField var projectGithubStar: String = "",

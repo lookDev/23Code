@@ -2,17 +2,24 @@ package com.mrper.code23.ui
 
 import android.os.Bundle
 import android.text.Html
+import android.text.TextUtils
 import com.boyou.autoservice.util.CommonUtil
-import com.mrper.code23.fewk.utils.ActivityUtil
-import com.mrper.code23.fewk.utils.ToastUtil
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.loopj.android.http.AsyncHttpResponseHandler
 import com.mrper.code23.R
 import com.mrper.code23.api.HttpManager
+import com.mrper.code23.data.adapter.CommentAdapter
 import com.mrper.code23.fewk.annotation.ContentView
 import com.mrper.code23.fewk.ui.BaseActivity
+import com.mrper.code23.fewk.utils.ActivityUtil
+import com.mrper.code23.fewk.utils.ToastUtil
+import com.mrper.code23.model.DemoCommentInfoEntry
 import com.mrper.code23.model.DemoDetailInfoEntry
 import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.activity_demo_detail.*
+import org.json.JSONArray
+import org.json.JSONObject
 
 @ContentView(R.layout.activity_demo_detail)
 class DemoDetailActivity : BaseActivity() {
@@ -20,6 +27,8 @@ class DemoDetailActivity : BaseActivity() {
     private lateinit var projectName: String
     private lateinit var projectUrl: String
     private lateinit var demoDetailInfo: DemoDetailInfoEntry
+    private var commentlist: MutableList<DemoCommentInfoEntry> = mutableListOf()
+    private var commentAdapter: CommentAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +41,11 @@ class DemoDetailActivity : BaseActivity() {
         demoDetailInfo = DemoDetailInfoEntry()
         demoDetailInfo.projectName = projectName
         demoDetailInfo.projectDes = intent?.extras?.getString("projectDes") ?: ""
-
+        //设置commentAdapter
+        commentAdapter = CommentAdapter(context,commentlist)
+        lvComment.adapter = commentAdapter
+        lvComment.emptyView = txtEmptyComment
+        txtEmptyComment.text = "正在加载评论数据..."
         getDemoDetailInfo()//获取demo的详细信息
     }
 
@@ -89,7 +102,7 @@ class DemoDetailActivity : BaseActivity() {
   </section>
   <footer>
     <span class="fontello star">([^<]+)</span><span class="fontello fork">([^<]+)</span>
-    <a class="" href="(.+?)">Download ZIP</a>
+    <a.+?href="(.+?)">Download ZIP</a>
   </footer>
 </div>""",responseBody)
         if (githubMatcher.find()) {
@@ -99,8 +112,29 @@ class DemoDetailActivity : BaseActivity() {
             demoDetailInfo.projectGithubFork = githubMatcher.group(8)
             demoDetailInfo.projectDownloadUrl = githubMatcher.group(9)
         }
+        //匹配发布时间
+        val pubTimeMatcher = CommonUtil.regexMatcher("<a.+?rel=\"author\">23Code</a>\\s*on\\s*([^<]+)</p>",responseBody)
+        if(pubTimeMatcher.find())
+            demoDetailInfo.projectPubTime = pubTimeMatcher.group(1)
+        val commentMatcher = CommonUtil.regexMatcher("UYAN_RENDER[.]comment(.+?)\\);",responseBody)
+        if(commentMatcher.find()){
+            val commentData: JSONArray = JSONObject(commentMatcher.group(1)).getJSONArray("data")
+            val commentlist:MutableList<DemoCommentInfoEntry> = Gson().fromJson<MutableList<DemoCommentInfoEntry>>(commentData.toString(),
+                    object : TypeToken<MutableList<DemoCommentInfoEntry>>() {}.type)
+            if(commentlist.size > 0){
+                this@DemoDetailActivity.commentlist.addAll(commentlist)
+                commentAdapter?.notifyDataSetChanged()
+                txtEmptyComment.text = ""
+            }else{
+                txtEmptyComment.text = "暂无评论数据"
+            }
+        }else{
+            txtEmptyComment.text = "暂无评论数据"
+        }
+        //控件赋值
         txtProName.text = Html.fromHtml(projectName)
         txtProDes.text = Html.fromHtml(demoDetailInfo.projectDes)
+        txtProTime.text = Html.fromHtml(if(!TextUtils.isEmpty(demoDetailInfo.projectPubTime)) "${demoDetailInfo.projectPubTime}发布" else "暂无信息" )
         txtGithub.text = Html.fromHtml(demoDetailInfo.projectGithub)
         txtGithubDes.text = Html.fromHtml(demoDetailInfo.projectGithubDes)
         txtGithubStar.text = Html.fromHtml(demoDetailInfo.projectGithubStar)
