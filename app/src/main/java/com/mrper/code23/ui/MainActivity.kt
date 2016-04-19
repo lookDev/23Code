@@ -8,7 +8,7 @@ import android.view.Gravity
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import com.boyou.autoservice.util.CommonUtil
+import com.mrper.code23.fewk.utils.CommonUtil
 import com.etsy.android.grid.StaggeredGridView
 import com.handmark.pulltorefresh.library.PullToRefreshBase
 import com.loopj.android.http.AsyncHttpResponseHandler

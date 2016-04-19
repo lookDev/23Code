@@ -3,7 +3,7 @@ package com.mrper.code23.ui
 import android.os.Bundle
 import android.text.Html
 import android.text.TextUtils
-import com.boyou.autoservice.util.CommonUtil
+import com.mrper.code23.fewk.utils.CommonUtil
 import com.loopj.android.http.AsyncHttpResponseHandler
 import com.mrper.code23.R
 import com.mrper.code23.api.HttpManager
