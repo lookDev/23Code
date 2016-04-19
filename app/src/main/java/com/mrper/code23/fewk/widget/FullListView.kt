@@ -15,7 +15,6 @@ class FullListView : ListView {
 
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE,MeasureSpec.AT_MOST))
-    }
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int)
+        = super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE,MeasureSpec.AT_MOST))
 }
