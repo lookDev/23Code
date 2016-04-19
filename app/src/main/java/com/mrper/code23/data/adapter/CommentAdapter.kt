@@ -51,12 +51,12 @@ class CommentAdapter(val context: Context,commentlist: MutableList<DemoCommentIn
 
     companion object {
 
-        class ViewHolder{
-            var imgReplyAvator: ImageView? = null
-            var txtReplyUser: TextView? = null
-            var txtReplyTime: TextView? = null
-            var txtReplyContent: TextView? = null
-        }
+        class ViewHolder(
+            @JvmField var imgReplyAvator: ImageView? = null
+            @JvmField var txtReplyUser: TextView? = null
+            @JvmField var txtReplyTime: TextView? = null
+            @JvmField var txtReplyContent: TextView? = null
+        )
 
     }
 
