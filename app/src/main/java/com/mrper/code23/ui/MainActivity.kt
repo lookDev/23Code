@@ -96,7 +96,7 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
      * @param currentPage 页码S
      */
    private fun getDemoList(currentPage: Int, isClearData: Boolean = false){
-        HttpManager.httpClient.get(this,HttpManager.getAbsoluteURL(if(currentPage != 1) "$typeValue/page/$currentPage" else typeValue),object: AsyncHttpResponseHandler(){
+        HttpManager.httpClient.get(this,HttpManager.getAbsoluteURL(if(currentPage != 1) "$typeValue/page/$currentPage/" else "$typeValue/"),object: AsyncHttpResponseHandler(){
             override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?) {
                 val responseResult = String(responseBody!!,charset("utf-8"))
                 if(currentPage == 1 && !isGetType) //如果是第一页，解析类型数据
@@ -111,14 +111,17 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
             }
         })
     }
-            /**
+
+    /**
      * 解析案例类型
      * @param responseBody 结果数据
      */
     private fun parseDemoTypes(responseBody: String?){
         val matcher = CommonUtil.regexMatcher("<li class=\"cat-item cat-item-\\d+\"><a href=\"http://www.23code.com/(.+?)/\"[^>]*>(.+?)</a>",responseBody!!)
         var typelist: MutableList<TypeInfoEntry> = mutableListOf()
-        while(matcher.find()) typelist.add(TypeInfoEntry(matcher.group(2),matcher.group(1)))
+        typelist.add(TypeInfoEntry(typeName = "全部",typeValue = ""))//添加全部类型
+        while(matcher.find())//循环添加其他类型
+            typelist.add(TypeInfoEntry(matcher.group(2),matcher.group(1)))
         lvType.adapter = ArrayAdapter(this@MainActivity,android.R.layout.simple_list_item_1,typelist)
         isGetType = typelist.size > 0 //是否已经获取过类型数据
     }

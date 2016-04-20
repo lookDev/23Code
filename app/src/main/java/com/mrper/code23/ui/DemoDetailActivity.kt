@@ -10,6 +10,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler
 import com.mrper.code23.R
 import com.mrper.code23.api.HttpManager
 import com.mrper.code23.data.adapter.CommentAdapter
+import com.mrper.code23.fewk.annotation.BackAction
 import com.mrper.code23.fewk.annotation.ContentView
 import com.mrper.code23.fewk.dialog.DialogBigImage
 import com.mrper.code23.fewk.ui.BaseActivity
@@ -24,6 +25,8 @@ import kotlinx.android.synthetic.main.activity_demo_detail.*
 import org.json.JSONObject
 import java.net.URLEncoder
 
+/**  DEMO详情页面 **/
+@BackAction
 @ContentView(R.layout.activity_demo_detail)
 class DemoDetailActivity : BaseActivity() {
 
