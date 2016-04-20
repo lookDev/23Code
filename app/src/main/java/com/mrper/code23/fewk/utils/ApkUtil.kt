@@ -3,12 +3,14 @@ package com.mrper.code23.fewk.utils
 import android.annotation.TargetApi
 import android.app.Activity
 import android.app.ActivityManager
+import android.app.DownloadManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Build
+import android.os.Environment
 import android.view.WindowManager
 import java.io.File
 
@@ -98,11 +100,31 @@ object ApkUtil {
         val am = cxt.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val runningApps = am.runningAppProcesses ?: return null
         for (procInfo in runningApps) {
-            if (procInfo.pid == pid) {
+            if (procInfo.pid == pid)
                 return procInfo.processName
-            }
         }
         return null
+    }
+
+    /**
+     * 调用系统文件下载
+     * @param context
+     * @param downloadUrl
+     */
+    @JvmStatic fun startDownload(context: Context,downloadUrl: String){
+        val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+        val request = DownloadManager.Request(Uri.parse(downloadUrl))
+        if(!Environment.getExternalStoragePublicDirectory("Download").exists())//如果下载目录不存在则创建下载目录
+            Environment.getExternalStoragePublicDirectory("Download").mkdirs()
+        request.setDestinationInExternalPublicDir("Download", downloadUrl.substring(downloadUrl.lastIndexOf('/') + 1))
+        // request.setTitle("MeiLiShuo");
+        // request.setDescription("MeiLiShuo desc");
+//         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+//         request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI)
+//         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN)
+        // request.setMimeType("application/cn.trinea.download.file");
+        downloadManager.enqueue(request)
+        ToastUtil.showShortToast(context,"已经开始下载")
     }
 
 }

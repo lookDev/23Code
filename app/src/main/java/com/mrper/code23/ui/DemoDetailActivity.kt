@@ -3,6 +3,7 @@ package com.mrper.code23.ui
 import android.os.Bundle
 import android.text.Html
 import android.text.TextUtils
+import android.view.View
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.loopj.android.http.AsyncHttpResponseHandler
@@ -13,6 +14,7 @@ import com.mrper.code23.fewk.annotation.ContentView
 import com.mrper.code23.fewk.dialog.DialogBigImage
 import com.mrper.code23.fewk.ui.BaseActivity
 import com.mrper.code23.fewk.utils.ActivityUtil
+import com.mrper.code23.fewk.utils.ApkUtil
 import com.mrper.code23.fewk.utils.CommonUtil
 import com.mrper.code23.fewk.utils.ToastUtil
 import com.mrper.code23.model.DemoCommentInfoEntry
@@ -51,6 +53,10 @@ class DemoDetailActivity : BaseActivity() {
         txtEmptyComment.text = "正在加载评论数据..."
         //设置查看图片
         btnBigImage.setOnClickListener { DialogBigImage(context,projectImage).show(supportFragmentManager,"bigImageDialog") }
+        //设置跳转至github页面
+        btnGithub.setOnClickListener { ActivityUtil.openBrowser(context,demoDetailInfo.projectGithub) }
+        //下载文件
+        btnDownload.setOnClickListener{ ApkUtil.startDownload(context,demoDetailInfo.projectDownloadUrl) }
         getDemoDetailInfo()//获取demo的详细信息
     }
 
@@ -102,33 +108,6 @@ class DemoDetailActivity : BaseActivity() {
         //匹配图片
         val imgMatcher = CommonUtil.regexMatcher("<img alt=\".+?23Code\" class=\"aligncenter size-full wp-image-\\d+\" src=\"(.+?)\"[^>]+>", responseBody)
         if (imgMatcher.find()) demoDetailInfo.projectImage = imgMatcher.group(1)
-        //匹配Github说明
-        val githubMatcher = CommonUtil.regexMatcher(
-                """<div class="reposidget">
-  <header class="fontello">
-    <span class="fontello info"><a href="(.+?)" target="_blank">[^<]+</a></span>
-    <h2>
-      <a href="(.+?)">([^<]+)</a>
-      <span> / </span>
-      <a href="(.+?)"><strong>([^<]+)</strong></a>
-    </h2>
-  </header>
-  <section>
-    <p class="">([^<]+)</p>
-    <p[^>]+><a[^>]+><strong>[^<]+</strong></a></p>
-  </section>
-  <footer>
-    <span class="fontello star">([^<]+)</span><span class="fontello fork">([^<]+)</span>
-    <a.+?href="(.+?)">Download ZIP</a>
-  </footer>
-</div>""",responseBody)
-        if (githubMatcher.find()) {
-            demoDetailInfo.projectGithub = githubMatcher.group(4)
-            demoDetailInfo.projectGithubDes = githubMatcher.group(6)
-            demoDetailInfo.projectGithubStar = githubMatcher.group(7)
-            demoDetailInfo.projectGithubFork = githubMatcher.group(8)
-            demoDetailInfo.projectDownloadUrl = githubMatcher.group(9)
-        }
         //匹配发布时间
         val pubTimeMatcher = CommonUtil.regexMatcher("<a.+?rel=\"author\">23Code</a>\\s*on\\s*([^<]+)</p>",responseBody)
         if(pubTimeMatcher.find())
@@ -143,10 +122,25 @@ class DemoDetailActivity : BaseActivity() {
         txtProName.text = Html.fromHtml(projectName)
         txtProDes.text = Html.fromHtml(demoDetailInfo.projectDes)
         txtProTime.text = Html.fromHtml(if(!TextUtils.isEmpty(demoDetailInfo.projectPubTime)) "${demoDetailInfo.projectPubTime}发布" else "暂无信息" )
-        txtGithub.text = Html.fromHtml(demoDetailInfo.projectGithub)
-        txtGithubDes.text = Html.fromHtml(demoDetailInfo.projectGithubDes)
-        txtGithubStar.text = Html.fromHtml(demoDetailInfo.projectGithubStar)
-        txtGithubFork.text = Html.fromHtml(demoDetailInfo.projectGithubFork)
+        //匹配Github说明
+        val githubMatcher = CommonUtil.regexMatcher(
+                """<div class="reposidget">[^<]+<header class="fontello">[^<]+<span class="fontello info"><a href="(.+?)" target="_blank">[^<]+</a></span>[^<]+<h2>"""
+                        + """[^<]+<a href="(.+?)">([^<]+)</a>[^<]+<span>[^<]+</span>[^<]+<a href="(.+?)"><strong>([^<]+)</strong></a>[^<]+</h2>[^<]+</header>[^<]+<section>"""
+                        + """[^<]+<p class="">([^<]+)</p>[^<]+<p[^>]+><a[^>]+><strong>[^<]+</strong></a></p>[^<]+</section>[^<]+<footer>[^<]+<span class="fontello star">([^<]+)"""
+                        + """</span><span class="fontello fork">([^<]+)</span>[^<]+<a.+?href="(.+?)">Download ZIP</a>[^<]+</footer>[^<]+</div>""",responseBody)
+        if (githubMatcher.find()) {
+            demoDetailInfo.projectGithub = githubMatcher.group(4)
+            demoDetailInfo.projectGithubDes = githubMatcher.group(6)
+            demoDetailInfo.projectGithubStar = githubMatcher.group(7)
+            demoDetailInfo.projectGithubFork = githubMatcher.group(8)
+            demoDetailInfo.projectDownloadUrl = githubMatcher.group(9)
+            txtGithub.text = Html.fromHtml(demoDetailInfo.projectGithub)
+            txtGithubDes.text = Html.fromHtml(demoDetailInfo.projectGithubDes)
+            txtGithubStar.text = Html.fromHtml(demoDetailInfo.projectGithubStar)
+            txtGithubFork.text = Html.fromHtml(demoDetailInfo.projectGithubFork)
+            githubContainer.visibility = View.VISIBLE
+            downloadContainer.visibility = View.VISIBLE
+        }
     }
 
     /**  解析案例评论数据 **/

@@ -3,6 +3,7 @@ package com.mrper.code23.fewk.utils
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import com.mrper.code23.R
 
@@ -83,5 +84,13 @@ object ActivityUtil {
     } catch(e: Exception) {
         e.printStackTrace()
     }
+
+    /** 打开浏览器 **/
+    @JvmStatic fun openBrowser(context: Context,url: String){
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(url)
+        context.startActivity(intent)
+    }
+
 
 }

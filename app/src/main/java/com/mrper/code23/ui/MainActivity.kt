@@ -162,7 +162,7 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
             if (isClearData){
                 this@MainActivity.currentPage = 1//设置页码为1
                 this@MainActivity.demolist.clear()
-                demolist.removeAt(0)//移除第一项
+//                demolist.removeAt(0)//移除第一项
             }else{
                 this@MainActivity.currentPage += 1//设置页码为1
             }
