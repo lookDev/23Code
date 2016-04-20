@@ -52,6 +52,12 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
         getDemoList(1,true)//获取案例类型
     }
 
+    override val isHideSystemBar: Boolean
+        get() = super.isHideSystemBar
+
+    override val systemBarTintResource: Int
+        get() = super.systemBarTintResource
+
     private fun setDrawerArrow(){
         val toggerDrawerArrow = ActionBarDrawerToggle(this, slideMenu, toolbar, R.string.app_name, R.string.app_name)
         toggerDrawerArrow.syncState()//

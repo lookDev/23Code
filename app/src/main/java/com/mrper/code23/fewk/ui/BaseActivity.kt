@@ -35,11 +35,11 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     /**  是否隐藏系统状态栏   */
-    protected val isHideSystemBar: Boolean
+    protected open val isHideSystemBar: Boolean
         get() = true
 
     /**  获取顶部system bar 的颜色   */
-    protected val systemBarTintResource: Int
+    protected open val systemBarTintResource: Int
         get() = R.color.colorPrimaryDark
 
     /**

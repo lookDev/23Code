@@ -12,5 +12,6 @@ data class DemoDetailInfoEntry(
       @JvmField var projectGithubDes: String = "",
       @JvmField var projectGithubStar: String = "",
       @JvmField var projectGithubFork: String = "",
-      @JvmField var projectDownloadUrl: String = ""
+      @JvmField var projectDownloadUrl: String = "",
+      @JvmField var shortUrlLink: String = ""
 )

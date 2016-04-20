@@ -17,4 +17,5 @@ class FullListView : ListView {
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int)
         = super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE,MeasureSpec.AT_MOST))
+
 }

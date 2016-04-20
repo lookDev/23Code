@@ -3,6 +3,8 @@ package com.mrper.code23.ui
 import android.os.Bundle
 import android.text.Html
 import android.text.TextUtils
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.loopj.android.http.AsyncHttpResponseHandler
 import com.mrper.code23.R
 import com.mrper.code23.api.HttpManager
@@ -16,7 +18,8 @@ import com.mrper.code23.model.DemoCommentInfoEntry
 import com.mrper.code23.model.DemoDetailInfoEntry
 import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.activity_demo_detail.*
-import java.util.regex.Pattern
+import org.json.JSONObject
+import java.net.URLEncoder
 
 @ContentView(R.layout.activity_demo_detail)
 class DemoDetailActivity : BaseActivity() {
@@ -72,6 +75,20 @@ class DemoDetailActivity : BaseActivity() {
         }
     })
 
+    /**  获取demo评论数据 **/
+    private fun getDemoCommentInfo(shortUrl: String,projectUrl: String) = HttpManager.httpClient.get(context,
+            "http://api.v2.uyan.cc/v4/comment/?su=${URLEncoder.encode(shortUrl.replace("http://",""),"utf-8")}&url=${URLEncoder.encode(projectUrl.replace("http://",""),"utf-8")}",
+            object : AsyncHttpResponseHandler() {
+        override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?) {
+            val resultString = String(responseBody!!, charset("utf-8"))
+            parseDemoCommentInfo(resultString)
+        }
+
+        override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?, error: Throwable?) {
+            ToastUtil.showShortToast(context, "网络错误，请检查您的网络")
+        }
+    })
+
     /**
      * 解析DEMO的详情数据
      * @param responseBody
@@ -111,30 +128,11 @@ class DemoDetailActivity : BaseActivity() {
         val pubTimeMatcher = CommonUtil.regexMatcher("<a.+?rel=\"author\">23Code</a>\\s*on\\s*([^<]+)</p>",responseBody)
         if(pubTimeMatcher.find())
             demoDetailInfo.projectPubTime = pubTimeMatcher.group(1)
-        //匹配评论数据
-        val commentMatcher = CommonUtil.regexMatcher(
-                """<li class="clearfix">
-					<a[^>]+>
-						<span class="tab-entry-image"><img[^>]+></span>
-
-						<span class="tab-entry-title">(.+?)says:</span>
-						<span class="tab-entry-comment">.+?</span>
-					</a>
-				</li>""",responseBody, Pattern.MULTILINE)
-        val commentlist:MutableList<DemoCommentInfoEntry> = mutableListOf()
-        while(commentMatcher.find()){
-            commentlist.add(DemoCommentInfoEntry(
-                    uname = commentMatcher.group(2),
-                    cnt = commentMatcher.group(3),
-                    uface = "http://www.android.com/"
-            ))
-        }
-        if(commentlist.size > 0){
-            this@DemoDetailActivity.commentlist.addAll(commentlist)
-            commentAdapter?.notifyDataSetChanged()
-            txtEmptyComment.text = ""
-        }else{
-            txtEmptyComment.text = "暂无评论数据"
+        //匹配短链接
+        val shortUrlMatcher = CommonUtil.regexMatcher("<link rel='shortlink' href='(.+?)'[^>]+>",responseBody)
+        if(shortUrlMatcher.find()) {
+            demoDetailInfo.shortUrlLink = shortUrlMatcher.group(1)
+            getDemoCommentInfo(demoDetailInfo.shortUrlLink,projectUrl) //获取评论数据
         }
         //控件赋值
         txtProName.text = Html.fromHtml(projectName)
@@ -144,6 +142,27 @@ class DemoDetailActivity : BaseActivity() {
         txtGithubDes.text = Html.fromHtml(demoDetailInfo.projectGithubDes)
         txtGithubStar.text = Html.fromHtml(demoDetailInfo.projectGithubStar)
         txtGithubFork.text = Html.fromHtml(demoDetailInfo.projectGithubFork)
+    }
+
+    /**  解析案例评论数据 **/
+    private fun parseDemoCommentInfo(responseBody: String){
+        //匹配评论数据
+        val commentMatcher = CommonUtil.regexMatcher("UYAN_RENDER[.]comment\\((.+?)\\);",responseBody)
+        val commentlist:MutableList<DemoCommentInfoEntry> = mutableListOf()
+        if(commentMatcher.find()){
+            val jsonObj = JSONObject(commentMatcher.group(1))
+            val commentItems = jsonObj.getJSONArray("data")
+            val comments: MutableList<DemoCommentInfoEntry> = Gson().fromJson<MutableList<DemoCommentInfoEntry>>(commentItems.toString(),
+                    object: TypeToken<MutableList<DemoCommentInfoEntry>>(){}.type)
+            commentlist.addAll(comments)
+        }
+        if(commentlist.size > 0){
+            this@DemoDetailActivity.commentlist.addAll(commentlist)
+            commentAdapter?.notifyDataSetChanged()
+            txtEmptyComment.text = ""
+        }else{
+            txtEmptyComment.text = "暂无评论数据"
+        }
     }
 
 }
