@@ -37,7 +37,7 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //设置标题部分
-        toolbar.title = "23Code"
+        toolbar.title = "23Code-全部"
         toolbar.setTitleTextColor(Color.WHITE)
         setToolbar(toolbar)
         setDrawerArrow()
@@ -72,6 +72,7 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
         R.id.lvType -> run {
             val item = lvType.getItemAtPosition(position) as TypeInfoEntry
             typeValue = item.typeValue
+            toolbar.title = "23Code-${item.typeName}"
             getDemoList(1,true)
             slideMenu.closeDrawers()
         }
