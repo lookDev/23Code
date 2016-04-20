@@ -8,6 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
         <!-- 使用自定义样式-->
         <item name="drawerArrowStyle">@style/AppTheme.MyDrawerArrowStyle</item>
+        <item name="titleTextAppearance">@style/ToolbarTitleAppearance</item>
+    </style>
+
+    <style name="ToolbarTitleAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">16sp</item>
+        <!--<item name="android:textStyle">normal</item>-->
     </style>
 
     <!--自定义 navigation drarwer 的样式-->
