@@ -10,6 +10,7 @@ import com.mrper.code23.R
 import com.mrper.code23.api.HttpManager
 import com.mrper.code23.data.adapter.CommentAdapter
 import com.mrper.code23.fewk.annotation.ContentView
+import com.mrper.code23.fewk.dialog.DialogBigImage
 import com.mrper.code23.fewk.ui.BaseActivity
 import com.mrper.code23.fewk.utils.ActivityUtil
 import com.mrper.code23.fewk.utils.CommonUtil
@@ -26,6 +27,7 @@ class DemoDetailActivity : BaseActivity() {
 
     private lateinit var projectName: String
     private lateinit var projectUrl: String
+    private lateinit var projectImage: String
     private lateinit var demoDetailInfo: DemoDetailInfoEntry
     private var commentlist: MutableList<DemoCommentInfoEntry> = mutableListOf()
     private var commentAdapter: CommentAdapter? = null
@@ -35,6 +37,7 @@ class DemoDetailActivity : BaseActivity() {
         //获取页面传递的数据
         projectName = intent?.extras?.getString("projectName") ?: ""
         projectUrl = intent?.extras?.getString("projectUrl") ?: ""
+        projectImage = intent?.extras?.getString("projectImage") ?: ""
         //设置控件基本属性
         toolbar.title = projectName
         setToolbar(toolbar)
@@ -46,6 +49,8 @@ class DemoDetailActivity : BaseActivity() {
         lvComment.adapter = commentAdapter
         lvComment.emptyView = txtEmptyComment
         txtEmptyComment.text = "正在加载评论数据..."
+        //设置查看图片
+        btnBigImage.setOnClickListener { DialogBigImage(context,projectImage).show(supportFragmentManager,"bigImageDialog") }
         getDemoDetailInfo()//获取demo的详细信息
     }
 

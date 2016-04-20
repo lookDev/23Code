@@ -81,6 +81,7 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
             data.putString("projectName",item.proName)
             data.putString("projectUrl", item.proUrl)
             data.putString("projectDes", item.desIntro)
+            data.putString("projectImage", item.pic)
             ActivityUtil.goForward(context,DemoDetailActivity::class.java,false,data)
         }
         else -> println()
