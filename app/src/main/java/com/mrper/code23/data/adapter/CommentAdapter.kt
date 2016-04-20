@@ -1,6 +1,7 @@
 package com.mrper.code23.data.adapter
 
 import android.content.Context
+import android.text.Html
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
@@ -39,9 +40,9 @@ class CommentAdapter(val context: Context,commentlist: MutableList<DemoCommentIn
             holder = itemView.tag as ViewHolder
         }
         Glide.with(context).load(item!!.uface).into(holder.imgReplyAvator)
-        holder.txtReplyUser?.text = item.uname
-        holder.txtReplyTime?.text = item.time
-        holder.txtReplyContent?.text = item.cnt
+        holder.txtReplyUser?.text = Html.fromHtml(item.uname)
+        holder.txtReplyTime?.text = Html.fromHtml(item.time)
+        holder.txtReplyContent?.text = Html.fromHtml(item.cnt)
         return itemView
     }
 

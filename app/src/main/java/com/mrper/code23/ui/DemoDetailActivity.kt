@@ -91,7 +91,8 @@ class DemoDetailActivity : BaseActivity() {
 
     /**  获取demo评论数据 **/
     private fun getDemoCommentInfo(shortUrl: String,projectUrl: String) = HttpManager.httpClient.get(context,
-            "http://api.v2.uyan.cc/v4/comment/?su=${URLEncoder.encode(shortUrl.replace("http://",""),"utf-8")}&url=${URLEncoder.encode(projectUrl.replace("http://",""),"utf-8")}",
+            HttpManager.CommentURL.replace("{shortUrl}",URLEncoder.encode(shortUrl.replace("http://",""),"utf-8"))
+                    .replace("{projectUrl}",URLEncoder.encode(projectUrl.replace("http://",""),"utf-8")),
             object : AsyncHttpResponseHandler() {
         override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?) {
             val resultString = String(responseBody!!, charset("utf-8"))

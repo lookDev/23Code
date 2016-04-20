@@ -11,6 +11,8 @@ class HttpManager {
 
         @JvmField val BaseURL = "http://www.23code.com/"
 
+        @JvmField val CommentURL = "http://api.v2.uyan.cc/v4/comment/?su={shortUrl}&url={projectUrl}"
+
         @JvmField val httpClient = AsyncHttpClient()
 
         @JvmStatic fun getAbsoluteURL(relativeUrl: String) = BaseURL + relativeUrl
