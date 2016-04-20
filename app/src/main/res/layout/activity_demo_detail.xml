@@ -39,6 +39,7 @@
                     android:layout_height="wrap_content"
                     android:background="#e0e0e0" />
                 <TableRow
+                    android:background="#fff"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -64,6 +65,7 @@
 
                 <TableRow
                     android:id="@+id/btnBigImage"
+                    android:background="#fff"
                     android:clickable="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -90,6 +92,7 @@
                     android:background="#e0e0e0" />
 
                 <TableRow
+                    android:background="#fff"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp">
@@ -113,6 +116,7 @@
                     android:layout_height="1dp"
                     android:background="#e0e0e0" />
                 <TableRow
+                    android:background="#fff"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="10dp">
@@ -145,6 +149,7 @@
                         android:background="#e0e0e0" />
                     <TableRow
                         android:id="@+id/btnGithub"
+                        android:background="#fff"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="10dp">
@@ -172,6 +177,7 @@
                         android:background="#e0e0e0" />
 
                     <TableRow
+                        android:background="#fff"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="10dp">
@@ -195,6 +201,7 @@
                         android:background="#e0e0e0" />
 
                     <TableRow
+                        android:background="#fff"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
