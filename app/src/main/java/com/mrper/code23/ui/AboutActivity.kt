@@ -42,8 +42,8 @@ class AboutActivity : BaseActivity() {
 
     companion object {
 
-        @JvmField val TAG_GET_CACHE_SIZE = 0x001
-        @JvmField val TAG_CLEAR_CACHE_DONE = 0x002
+        @JvmStatic val TAG_GET_CACHE_SIZE = 0x001
+        @JvmStatic val TAG_CLEAR_CACHE_DONE = 0x002
 
         class CacheThread(val activity: AboutActivity?,val tag: Int) : Thread(){
 

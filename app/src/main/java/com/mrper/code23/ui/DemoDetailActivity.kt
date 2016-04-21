@@ -84,9 +84,8 @@ class DemoDetailActivity : BaseActivity() {
             parseDemoDetailInfo(resultString)
         }
 
-        override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?, error: Throwable?) {
-            ToastUtil.showShortToast(context, "网络错误，请检查您的网络")
-        }
+        override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?, error: Throwable?)
+            = ToastUtil.showShortToast(context, "网络错误，请检查您的网络")
     })
 
     /**  获取demo评论数据 **/
@@ -99,9 +98,8 @@ class DemoDetailActivity : BaseActivity() {
             parseDemoCommentInfo(resultString)
         }
 
-        override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?, error: Throwable?) {
-            ToastUtil.showShortToast(context, "网络错误，请检查您的网络")
-        }
+        override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?, error: Throwable?)
+                = ToastUtil.showShortToast(context, "网络错误，请检查您的网络")
     })
 
     /**
