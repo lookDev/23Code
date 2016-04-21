@@ -5,13 +5,12 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 23
     buildToolsVersion "24.0.0 rc3"
-
     defaultConfig {
         applicationId "com.mrper.code23"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName '1.0.3'
     }
     buildTypes {
         release {
@@ -21,6 +20,8 @@ android {
     }
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
+    }
+    productFlavors {
     }
 }
 
@@ -38,6 +39,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.6.2'
     compile project(':lib-pull2refresh')
     compile project(':lib-overscroll')
+    compile files('libs/umeng-update-v2.7.0.jar')
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 buildscript {

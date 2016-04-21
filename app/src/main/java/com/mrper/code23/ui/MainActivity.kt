@@ -24,6 +24,7 @@ import com.mrper.code23.fewk.utils.CommonUtil
 import com.mrper.code23.fewk.utils.ToastUtil
 import com.mrper.code23.model.DemoInfoEntry
 import com.mrper.code23.model.TypeInfoEntry
+import com.umeng.update.UmengUpdateAgent
 import cz.msebera.android.httpclient.Header
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -38,6 +39,7 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        UmengUpdateAgent.update(this)//集成友盟自动更新SDK
         //设置标题部分
         toolbar.title = "23Code"
         toolbar.setTitleTextColor(Color.WHITE)
@@ -59,7 +61,7 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
     override val systemBarTintResource: Int get() = super.systemBarTintResource
 
     private fun setDrawerArrow() = with(ActionBarDrawerToggle(this, slideMenu, toolbar, R.string.app_name, R.string.app_name)){
-        syncState()
+        syncState() //同步状态
 //        slideMenu.setScrimColor(Color.TRANSPARENT)
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) slideMenu.addDrawerListener(this@with) else slideMenu.setDrawerListener(this@with)
     }

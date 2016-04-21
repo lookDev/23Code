@@ -12,6 +12,7 @@ import com.mrper.code23.fewk.utils.ActivityUtil
 import com.mrper.code23.fewk.utils.ApkUtil
 import com.mrper.code23.fewk.utils.CacheUtil
 import com.mrper.code23.fewk.utils.ToastUtil
+import com.umeng.update.UmengUpdateAgent
 import kotlinx.android.synthetic.main.activity_about.*
 import java.lang.ref.WeakReference
 
@@ -28,7 +29,7 @@ class AboutActivity : BaseActivity() {
         cacheHandler = CacheHandler(this)
         txtVersion.text = ApkUtil.getVersionName(this)
         //点击事件
-        btnUpgrade.setOnClickListener {  }
+        btnUpgrade.setOnClickListener { UmengUpdateAgent.update(this) }
         btnClearCache.setOnClickListener { CacheThread(this,TAG_CLEAR_CACHE_DONE).start() }
         //获取缓存信息
         CacheThread(this,TAG_GET_CACHE_SIZE).start()
