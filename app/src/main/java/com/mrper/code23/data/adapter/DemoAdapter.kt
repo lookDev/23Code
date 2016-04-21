@@ -7,11 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
-import com.mrper.code23.fewk.utils.DensityUtil
-import com.mrper.code23.fewk.utils.DeviceUtil
 import com.bumptech.glide.Glide
 import com.makeramen.roundedimageview.RoundedImageView
 import com.mrper.code23.R
+import com.mrper.code23.fewk.utils.DensityUtil
+import com.mrper.code23.fewk.utils.DeviceUtil
 import com.mrper.code23.model.DemoInfoEntry
 
 /**
@@ -30,7 +30,7 @@ class DemoAdapter(val context: Context?,demolist: MutableList<DemoInfoEntry>?) :
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
         val item = demolist?.get(position)
-        var holder: ViewHolder? = null
+        var holder: ViewHolder?
         var itemView: View? = convertView
         if(itemView == null){
             holder = ViewHolder()
@@ -49,7 +49,7 @@ class DemoAdapter(val context: Context?,demolist: MutableList<DemoInfoEntry>?) :
         //设置图片布局参数
         val imgParams = holder.imgPicture?.layoutParams
         imgParams?.width = imageWidth
-        imgParams?.height = imageWidth * 4 / 3
+        imgParams?.height = imageWidth * 568 / 320
         Glide.with(context).load(item!!.pic)
                 .asBitmap()
                 .override(imgParams?.width?:0,imgParams?.height?:0)

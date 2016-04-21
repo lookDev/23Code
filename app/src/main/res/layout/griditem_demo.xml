@@ -23,7 +23,7 @@
                android:layout_marginRight="-1dp"
                android:layout_width="match_parent"
                android:layout_height="120dp"
-               android:scaleType="centerCrop"
+               android:scaleType="fitXY"
                app:riv_corner_radius="5dp"/>
            <TextView
                android:layout_width="wrap_content"
