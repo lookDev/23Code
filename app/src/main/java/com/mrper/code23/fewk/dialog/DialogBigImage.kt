@@ -21,7 +21,7 @@ class DialogBigImage(val ctx: Context,val imgUrl: String) : DialogFragment(){
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialogView = View.inflate(ctx, R.layout.dialog_big_image,null)
         val imgView = dialogView.findViewById(R.id.imgPicture) as ImageView
-        val imgWidth = DeviceUtil.getScreenWidth(ctx) - DensityUtil.dip2px(ctx,30f)
+        val imgWidth = DeviceUtil.getScreenWidth(ctx) - DensityUtil.dip2px(ctx,50f)
         val imgHeight = imgWidth * 568 / 320
         val imgParams = imgView.layoutParams
         imgParams.width = imgWidth

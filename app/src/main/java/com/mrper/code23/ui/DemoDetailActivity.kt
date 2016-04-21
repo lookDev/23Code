@@ -69,7 +69,7 @@ class DemoDetailActivity : BaseActivity() {
     }
 
 //    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.menu_demo_detail, menu)
+//        menuInflater.inflate(R.menu.menu_main, menu)
 //        return true
 //    }
 //
@@ -133,15 +133,17 @@ class DemoDetailActivity : BaseActivity() {
                         + """[^<]+<p class="">([^<]+)</p>[^<]+<p[^>]+><a[^>]+><strong>[^<]+</strong></a></p>[^<]+</section>[^<]+<footer>[^<]+<span class="fontello star">([^<]+)"""
                         + """</span><span class="fontello fork">([^<]+)</span>[^<]+<a.+?href="(.+?)">Download ZIP</a>[^<]+</footer>[^<]+</div>""",responseBody)
         if (githubMatcher.find()) {
-            demoDetailInfo.projectGithub = githubMatcher.group(4)
-            demoDetailInfo.projectGithubDes = githubMatcher.group(6)
-            demoDetailInfo.projectGithubStar = githubMatcher.group(7)
-            demoDetailInfo.projectGithubFork = githubMatcher.group(8)
-            demoDetailInfo.projectDownloadUrl = githubMatcher.group(9)
-            txtGithub.text = Html.fromHtml(demoDetailInfo.projectGithub)
-            txtGithubDes.text = Html.fromHtml(demoDetailInfo.projectGithubDes)
-            txtGithubStar.text = Html.fromHtml(demoDetailInfo.projectGithubStar)
-            txtGithubFork.text = Html.fromHtml(demoDetailInfo.projectGithubFork)
+            with(demoDetailInfo) {
+                projectGithub = githubMatcher.group(4)
+                projectGithubDes = githubMatcher.group(6)
+                projectGithubStar = githubMatcher.group(7)
+                projectGithubFork = githubMatcher.group(8)
+                projectDownloadUrl = githubMatcher.group(9)
+                txtGithub.text = Html.fromHtml(projectGithub)
+                txtGithubDes.text = Html.fromHtml(projectGithubDes)
+                txtGithubStar.text = Html.fromHtml(projectGithubStar)
+                txtGithubFork.text = Html.fromHtml(projectGithubFork)
+            }
             githubContainer.visibility = View.VISIBLE
             downloadContainer.visibility = View.VISIBLE
         }

@@ -5,6 +5,8 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.Gravity
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -37,7 +39,7 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //设置标题部分
-        toolbar.title = "23Code-全部"
+        toolbar.title = "23Code"
         toolbar.setTitleTextColor(Color.WHITE)
         setToolbar(toolbar)
         setDrawerArrow()
@@ -56,11 +58,10 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
 
     override val systemBarTintResource: Int get() = super.systemBarTintResource
 
-    private fun setDrawerArrow(){
-        val toggerDrawerArrow = ActionBarDrawerToggle(this, slideMenu, toolbar, R.string.app_name, R.string.app_name)
-        toggerDrawerArrow.syncState()//
+    private fun setDrawerArrow() = with(ActionBarDrawerToggle(this, slideMenu, toolbar, R.string.app_name, R.string.app_name)){
+        syncState()
 //        slideMenu.setScrimColor(Color.TRANSPARENT)
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) slideMenu.addDrawerListener(toggerDrawerArrow) else slideMenu.setDrawerListener(toggerDrawerArrow)
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) slideMenu.addDrawerListener(this@with) else slideMenu.setDrawerListener(this@with)
     }
 
     override fun onToolbarNavigationClicked()
@@ -70,20 +71,36 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
         R.id.lvType -> run {
             val item = lvType.getItemAtPosition(position) as TypeInfoEntry
             typeValue = item.typeValue
-            toolbar.title = "23Code-${item.typeName}"
             getDemoList(1,true)
             slideMenu.closeDrawers()
         }
         R.id.PullToRefreshMultiColumnListView -> run {
             val item = demoAdapter!!.getItem(position) as DemoInfoEntry
-            val data = Bundle()
-            data.putString("projectName",item.proName)
-            data.putString("projectUrl", item.proUrl)
-            data.putString("projectDes", item.desIntro)
-            data.putString("projectImage", item.pic)
-            ActivityUtil.goForward(context,DemoDetailActivity::class.java,false,data)
+            with(Bundle()) {
+                putString("projectName", item.proName)
+                putString("projectUrl", item.proUrl)
+                putString("projectDes", item.desIntro)
+                putString("projectImage", item.pic)
+                ActivityUtil.goForward(context, DemoDetailActivity::class.java, false, this@with)
+            }
         }
         else -> println()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean = when(item?.itemId){
+        R.id.menu_action_search -> run{
+            return true
+        }
+        R.id.menu_action_about -> run {
+            ActivityUtil.goForward(context,AboutActivity::class.java,false)
+            return true
+        }
+        else -> super.onOptionsItemSelected(item)
     }
 
     override fun onPullDownToRefresh(refreshView: PullToRefreshBase<StaggeredGridView>?) = getDemoList(1,true)//获取案例类型
