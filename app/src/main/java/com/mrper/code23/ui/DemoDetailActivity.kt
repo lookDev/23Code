@@ -44,7 +44,7 @@ class DemoDetailActivity : BaseActivity() {
         projectUrl = intent?.extras?.getString("projectUrl") ?: ""
         projectImage = intent?.extras?.getString("projectImage") ?: ""
         //设置控件基本属性
-        toolbar.title = projectName
+        toolbar.title = Html.fromHtml(projectName)
         setToolbar(toolbar)
         demoDetailInfo = DemoDetailInfoEntry()
         demoDetailInfo.projectName = projectName
@@ -128,12 +128,12 @@ class DemoDetailActivity : BaseActivity() {
         val githubMatcher = CommonUtil.regexMatcher(
                 """<div class="reposidget">[^<]+<header class="fontello">[^<]+<span class="fontello info"><a href="(.+?)" target="_blank">[^<]+</a></span>[^<]+<h2>"""
                         + """[^<]+<a href="(.+?)">([^<]+)</a>[^<]+<span>[^<]+</span>[^<]+<a href="(.+?)"><strong>([^<]+)</strong></a>[^<]+</h2>[^<]+</header>[^<]+<section>"""
-                        + """[^<]+<p class="">([^<]+)</p>[^<]+<p[^>]+><a[^>]+><strong>[^<]+</strong></a></p>[^<]+</section>[^<]+<footer>[^<]+<span class="fontello star">([^<]+)"""
+                        + """[^<]+<p[^>]+>([^<]+)?</p>[^<]+<p[^>]+><a[^>]+><strong>[^<]+</strong></a></p>[^<]+</section>[^<]+<footer>[^<]+<span class="fontello star">([^<]+)"""
                         + """</span><span class="fontello fork">([^<]+)</span>[^<]+<a.+?href="(.+?)">Download ZIP</a>[^<]+</footer>[^<]+</div>""",responseBody)
         if (githubMatcher.find()) {
             with(demoDetailInfo) {
                 projectGithub = githubMatcher.group(4)
-                projectGithubDes = githubMatcher.group(6)
+                projectGithubDes = try { githubMatcher.group(6) } catch(e: Exception) { "暂无介绍" }
                 projectGithubStar = githubMatcher.group(7)
                 projectGithubFork = githubMatcher.group(8)
                 projectDownloadUrl = githubMatcher.group(9)
