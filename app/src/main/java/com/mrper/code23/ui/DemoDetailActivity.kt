@@ -15,9 +15,9 @@ import com.mrper.code23.fewk.annotation.ContentView
 import com.mrper.code23.fewk.dialog.DialogBigImage
 import com.mrper.code23.fewk.ui.BaseActivity
 import com.mrper.code23.fewk.utils.ActivityUtil
+import com.mrper.code23.fewk.utils.AlertToastUtil
 import com.mrper.code23.fewk.utils.ApkUtil
 import com.mrper.code23.fewk.utils.CommonUtil
-import com.mrper.code23.fewk.utils.ToastUtil
 import com.mrper.code23.model.DemoCommentInfoEntry
 import com.mrper.code23.model.DemoDetailInfoEntry
 import cz.msebera.android.httpclient.Header
@@ -84,8 +84,10 @@ class DemoDetailActivity : BaseActivity() {
             parseDemoDetailInfo(resultString)
         }
 
-        override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?, error: Throwable?)
-            = ToastUtil.showShortToast(context, "网络错误，请检查您的网络")
+        override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?, error: Throwable?){
+            txtEmptyComment.text = "评论加载失败"
+            AlertToastUtil.showToast(context, "网络错误，请检查您的网络")
+        }
     })
 
     /**  获取demo评论数据 **/
@@ -98,8 +100,10 @@ class DemoDetailActivity : BaseActivity() {
             parseDemoCommentInfo(resultString)
         }
 
-        override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?, error: Throwable?)
-                = ToastUtil.showShortToast(context, "网络错误，请检查您的网络")
+        override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?, error: Throwable?){
+            txtEmptyComment.text = "评论加载失败"
+            AlertToastUtil.showToast(context, "网络错误，请检查您的网络")
+        }
     })
 
     /**
