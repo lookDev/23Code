@@ -79,10 +79,8 @@ class DemoDetailActivity : BaseActivity() {
 
     /**  获取demo的详细信息  **/
     private fun getDemoDetailInfo() = HttpManager.httpClient.get(context, projectUrl, object : AsyncHttpResponseHandler() {
-        override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?) {
-            val resultString = String(responseBody!!, charset("utf-8"))
-            parseDemoDetailInfo(resultString)
-        }
+        override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?)
+            = parseDemoDetailInfo(String(responseBody!!, charset("utf-8")))
 
         override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?, error: Throwable?){
             txtEmptyComment.text = "评论加载失败"
@@ -95,10 +93,8 @@ class DemoDetailActivity : BaseActivity() {
             HttpManager.CommentURL.replace("{shortUrl}",URLEncoder.encode(shortUrl.replace("http://",""),"utf-8"))
                     .replace("{projectUrl}",URLEncoder.encode(projectUrl.replace("http://",""),"utf-8")),
             object : AsyncHttpResponseHandler() {
-        override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?) {
-            val resultString = String(responseBody!!, charset("utf-8"))
-            parseDemoCommentInfo(resultString)
-        }
+        override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?)
+                = parseDemoCommentInfo(String(responseBody!!, charset("utf-8")))
 
         override fun onFailure(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray?, error: Throwable?){
             txtEmptyComment.text = "评论加载失败"
