@@ -37,8 +37,10 @@ dependencies {
     compile 'com.etsy.android.grid:library:1.0.5'
     compile 'com.makeramen:roundedimageview:2.2.1'
     compile 'com.google.code.gson:gson:2.6.2'
+    compile 'com.alipay.euler:andfix:0.3.1@aar'
     compile project(':lib-pull2refresh')
     compile project(':lib-overscroll')
+    compile project(':crashcatcher')
     compile files('libs/umeng-update-v2.7.0.jar')
     compile files('libs/jsoup-1.9.1.jar')
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

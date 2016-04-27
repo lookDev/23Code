@@ -1,31 +1,7 @@
 [
     {
-        "merged": "G:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__light_theme.xml",
-        "source": "G:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__light_theme.xml"
-    },
-    {
-        "merged": "F:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__dark_theme.xml",
-        "source": "F:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__dark_theme.xml"
-    },
-    {
         "merged": "F:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__dark_theme.xml",
         "source": "F:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__dark_theme.xml"
-    },
-    {
-        "merged": "G:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__dark_theme.xml",
-        "source": "G:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__dark_theme.xml"
-    },
-    {
-        "merged": "G:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__light_theme.xml",
-        "source": "G:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__light_theme.xml"
-    },
-    {
-        "merged": "F:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__light_theme.xml",
-        "source": "F:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__light_theme.xml"
-    },
-    {
-        "merged": "G:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__dark_theme.xml",
-        "source": "G:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\bundles\\debug\\res\\color\\vpi__dark_theme.xml"
     },
     {
         "merged": "F:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\vpi__light_theme.xml",

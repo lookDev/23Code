@@ -4,104 +4,8 @@
         "source": "F:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\default_ptr_flip.png"
     },
     {
-        "merged": "F:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\vpi__tab_selected_focused_holo.9.png",
-        "source": "F:\\android\\AutoService\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_selected_focused_holo.9.png"
-    },
-    {
         "merged": "F:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\vpi__tab_selected_focused_holo.9.png",
         "source": "F:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_selected_focused_holo.9.png"
-    },
-    {
-        "merged": "F:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\vpi__tab_unselected_pressed_holo.9.png",
-        "source": "F:\\android\\AutoService\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_unselected_pressed_holo.9.png"
-    },
-    {
-        "merged": "F:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\vpi__tab_selected_holo.9.png",
-        "source": "F:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_selected_holo.9.png"
-    },
-    {
-        "merged": "G:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\vpi__tab_selected_focused_holo.9.png",
-        "source": "G:\\android\\AutoService\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_selected_focused_holo.9.png"
-    },
-    {
-        "merged": "G:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\vpi__tab_selected_pressed_holo.9.png",
-        "source": "G:\\android\\AutoService\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_selected_pressed_holo.9.png"
-    },
-    {
-        "merged": "G:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\default_ptr_rotate.png",
-        "source": "G:\\android\\AutoService\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\default_ptr_rotate.png"
-    },
-    {
-        "merged": "F:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\vpi__tab_unselected_holo.9.png",
-        "source": "F:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_unselected_holo.9.png"
-    },
-    {
-        "merged": "F:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\default_ptr_flip.png",
-        "source": "F:\\android\\AutoService\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\default_ptr_flip.png"
-    },
-    {
-        "merged": "G:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\vpi__tab_selected_focused_holo.9.png",
-        "source": "G:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_selected_focused_holo.9.png"
-    },
-    {
-        "merged": "G:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\vpi__tab_unselected_focused_holo.9.png",
-        "source": "G:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_unselected_focused_holo.9.png"
-    },
-    {
-        "merged": "F:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\vpi__tab_unselected_focused_holo.9.png",
-        "source": "F:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_unselected_focused_holo.9.png"
-    },
-    {
-        "merged": "G:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\vpi__tab_unselected_holo.9.png",
-        "source": "G:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_unselected_holo.9.png"
-    },
-    {
-        "merged": "G:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\vpi__tab_selected_pressed_holo.9.png",
-        "source": "G:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_selected_pressed_holo.9.png"
-    },
-    {
-        "merged": "F:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\default_ptr_rotate.png",
-        "source": "F:\\android\\AutoService\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\default_ptr_rotate.png"
-    },
-    {
-        "merged": "F:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\indicator_arrow.png",
-        "source": "F:\\android\\AutoService\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\indicator_arrow.png"
-    },
-    {
-        "merged": "G:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\vpi__tab_selected_holo.9.png",
-        "source": "G:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_selected_holo.9.png"
-    },
-    {
-        "merged": "G:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\default_ptr_rotate.png",
-        "source": "G:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\default_ptr_rotate.png"
-    },
-    {
-        "merged": "G:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\vpi__tab_unselected_pressed_holo.9.png",
-        "source": "G:\\android\\AutoService\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_unselected_pressed_holo.9.png"
-    },
-    {
-        "merged": "F:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\vpi__tab_unselected_holo.9.png",
-        "source": "F:\\android\\AutoService\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_unselected_holo.9.png"
-    },
-    {
-        "merged": "F:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\vpi__tab_selected_pressed_holo.9.png",
-        "source": "F:\\android\\AutoService\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_selected_pressed_holo.9.png"
-    },
-    {
-        "merged": "G:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\vpi__tab_unselected_focused_holo.9.png",
-        "source": "G:\\android\\AutoService\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_unselected_focused_holo.9.png"
-    },
-    {
-        "merged": "G:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\default_ptr_flip.png",
-        "source": "G:\\android\\AutoService\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\default_ptr_flip.png"
-    },
-    {
-        "merged": "G:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\indicator_arrow.png",
-        "source": "G:\\android\\AutoService\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\indicator_arrow.png"
-    },
-    {
-        "merged": "F:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\vpi__tab_selected_holo.9.png",
-        "source": "F:\\android\\AutoService\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_selected_holo.9.png"
     },
     {
         "merged": "F:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\indicator_arrow.png",
@@ -112,31 +16,19 @@
         "source": "F:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_unselected_pressed_holo.9.png"
     },
     {
-        "merged": "G:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\vpi__tab_unselected_pressed_holo.9.png",
-        "source": "G:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_unselected_pressed_holo.9.png"
+        "merged": "F:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\vpi__tab_selected_holo.9.png",
+        "source": "F:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_selected_holo.9.png"
     },
     {
         "merged": "F:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\vpi__tab_selected_pressed_holo.9.png",
         "source": "F:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_selected_pressed_holo.9.png"
     },
     {
-        "merged": "G:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\indicator_arrow.png",
-        "source": "G:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\indicator_arrow.png"
+        "merged": "F:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\vpi__tab_unselected_holo.9.png",
+        "source": "F:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_unselected_holo.9.png"
     },
     {
-        "merged": "F:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\vpi__tab_unselected_focused_holo.9.png",
-        "source": "F:\\android\\AutoService\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_unselected_focused_holo.9.png"
-    },
-    {
-        "merged": "G:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\default_ptr_flip.png",
-        "source": "G:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\default_ptr_flip.png"
-    },
-    {
-        "merged": "G:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\vpi__tab_unselected_holo.9.png",
-        "source": "G:\\android\\AutoService\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_unselected_holo.9.png"
-    },
-    {
-        "merged": "G:\\android\\AutoService\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\vpi__tab_selected_holo.9.png",
-        "source": "G:\\android\\AutoService\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_selected_holo.9.png"
+        "merged": "F:\\android\\Code23\\lib-pull2refresh\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\vpi__tab_unselected_focused_holo.9.png",
+        "source": "F:\\android\\Code23\\lib-pull2refresh\\src\\main\\res\\drawable-mdpi\\vpi__tab_unselected_focused_holo.9.png"
     }
 ]

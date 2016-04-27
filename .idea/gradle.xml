@@ -10,6 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/crashcatcher" />
             <option value="$PROJECT_DIR$/lib-overscroll" />
             <option value="$PROJECT_DIR$/lib-pull2refresh" />
           </set>
@@ -18,6 +19,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/crashcatcher" />
             <option value="$PROJECT_DIR$/lib-overscroll" />
             <option value="$PROJECT_DIR$/lib-pull2refresh" />
           </set>

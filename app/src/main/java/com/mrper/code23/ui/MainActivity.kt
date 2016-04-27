@@ -54,6 +54,8 @@ class MainActivity : BaseActivity(),PullToRefreshBase.OnRefreshListener2<Stagger
         lvDemo.setAdapter(demoAdapter)
         lvDemo.setOnItemClickListener(this)
         getDemoList(1,true)//获取案例类型
+        var a = arrayListOf(0)
+        var b = a[20]
     }
 
     override val isHideSystemBar: Boolean get() = super.isHideSystemBar

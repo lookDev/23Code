@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Code23.iml" filepath="$PROJECT_DIR$/Code23.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/crashcatcher/crashcatcher.iml" filepath="$PROJECT_DIR$/crashcatcher/crashcatcher.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib-overscroll/lib-overscroll.iml" filepath="$PROJECT_DIR$/lib-overscroll/lib-overscroll.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib-pull2refresh/lib-pull2refresh.iml" filepath="$PROJECT_DIR$/lib-pull2refresh/lib-pull2refresh.iml" />
     </modules>

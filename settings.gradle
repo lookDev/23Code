@@ -1,1 +1,1 @@
-include ':app', ':lib-pull2refresh', ':lib-overscroll'
+include ':app', ':lib-pull2refresh', ':lib-overscroll', ':crashcatcher'
